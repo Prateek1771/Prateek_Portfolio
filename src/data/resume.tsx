@@ -3,30 +3,49 @@ import { HomeIcon, NotebookIcon } from "lucide-react";
 
 export const DATA = {
   name: "Prateek_Hitli",
-  initials: "DV",
+  initials: "PH",
   url: "https://github.com/Prateek1771",
   location: "Karnataka, India",
   locationLink: "",
   description:
-    "Software Engineer and Web Developer. I love building cool websites and helping people.",
+    "A Full Stack Web Developer & AI Developer. I love building cool websites and intelligent AI solutions.",
   summary:
-    "I am a [Web developer]() skilled in [React JS, Next JS](), and [TypeScript](), with experience in creating responsive and user-friendly websites. I've worked on projects that boosted user engagement and visibility, using tools like Aceternity UI, Magic UI, and more. My focus is on designing effective UI/UX solutions and building innovative web applications.This version keeps the key content while being brief and to the point. In the past, [I'm crrently purcuing Bachelors degree in Artifical Intelligence.](/#education) Click here  to get my [resume](https://drive.google.com/file/d/1muBIzWHculpH1JR7Via9BYX_3cdr_lav/view?usp=sharing).",
-  avatarUrl: "/me.png",
+    "I’m a passionate [Full Stack Web Developer]() and [AI Enthusiast](), with a [Bachelors degree in Artificial Intelligence and Machine Learning](). I build modern and user-friendly web apps using React.js, Next.js, MongoDB and many more other tools. On the AI side, I work with Python, TensorFlow, OpenAI API and other vision libraries. I love learning, experimenting, and deliver products. I like to creating impactful solutions that combine the best of AI and web development. Get my resume [Click Here!](https://drive.google.com/file/d/1xkjDkiKaZ9JlADw4dtzoENiVIVNzxyOz/view?usp=sharing)",
+
+  avatarUrl: "/me1.png",
+
   skills: [
-    "React",
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "React.js",
+    "Redux toolkit",
     "Next.js",
     "Typescript",
     "Node.js",
-    "SQL",
-    "Git",
-    "Git Hub",
-    'Figma',
+    "GSAP Animations",
     "Python",
-    "Spline 3d Models",
-    "Java",
+    "Flask",
+    "MongoDB",
+    "PostgreeSQL",
+    "Supabase",
+    "Firebase",
+    "Docker",
+    "Git",
+    "GitHub",
+    "Postman",
+    "UI/UX",
+    "Figma",
+    "Spline",
+    "Tensorflow",
+    "Scikit-learn",
+    "LangChain",
+    "LangGraph",
+    "AI Agents"
   ],
   navbar: [
     { href: "/", icon: HomeIcon, label: "Home" },
+    // { href: "/blog", icon: NotebookIcon, label: "Blog" },
 
   ],
   contact: {
@@ -54,6 +73,7 @@ export const DATA = {
 
         navbar: true,
       },
+     
       email: {
         name: "Send Email",
         url: "#",
@@ -70,14 +90,15 @@ export const DATA = {
       href: "https://synkerrofficial.github.io/synkerr/",
       badges: [],
       location: "Remote",
-      title: "React Js Frontend Development",
+      title: "React Js Frontend Developer Intern",
       logoUrl: "/syn.png",
       start: "April 2024",
-      end: "May 2024",
+      end: "June 2024",
       description:
         "Developed modern, stylish websites using HTML, CSS, JavaScript, React JS,Aceternity UI, and Shad CN UI enhancing web aesthetics and functionality. Boosted company visibility by collaborating on web development projects, leading to a 20% increase in online traffic. Improved user experience through focused UI/UX design enhancements, resulting in a 15% increase in user engagement.",
     },
   ],
+
   education: [
     {
       school: "Coorg Institute of Technology",
@@ -96,7 +117,111 @@ export const DATA = {
       end: "2021",
     },
   ],
+
   projects: [
+    {
+      title: " Talent-Meet",
+      href: "https://github.com/Prateek1771/talent-meet",
+      dates: "",
+      active: true,
+      description:
+        "Talent-Meet is a web platform that simplifies technical interviews with real-time coding, video calls, and structured candidate feedback in one unified experience.",
+      technologies: [
+        "Next.js",
+        "Typescript",
+        "TailwindCSS",
+        "Convex",
+        "Shadcn UI",
+        "Magic UI",
+        "Clerk",
+        "Stream"
+      ],
+      links: [
+        {
+          type: "Source",
+          href: "https://github.com/Prateek1771/talent-meet",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "/tmeet.png",
+      video: "",
+    },
+
+    {
+      title: " Codez",
+      href: "https://github.com/Prateek1771/codeZ.git",
+      dates: "",
+      active: true,
+      description:
+        "It is an AI-powered coding assistant that helps developers boost productivity through real-time code generation, optimization, and intelligent suggestions.",
+      technologies: [
+        "Next.js",
+        "Typescript",
+        "TailwindCSS",
+        "Convex",
+        "Shadcn UI",
+        "Google Auth",
+        "Gemini API"
+      ],
+      links: [
+        {
+          type: "Source",
+          href: "https://github.com/Prateek1771/codeZ.git",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "/codez.png",
+      video: "",
+    },
+
+    {
+      title: " CodeSensei",
+      href: "https://github.com/Prateek1771/codeSensei",
+      dates: "",
+      active: true,
+      description:
+        "CodeSensei is an AI-powered code reviewer that analyzes code for quality, efficiency, and security, offering real-time feedback and best practice suggestions.",
+      technologies: [
+        "React.js",
+        "TailwindCSS",
+        "Gemini API",
+        "Shadcn UI",
+        "Express.js",
+      ],
+      links: [
+        {
+          type: "Source",
+          href: "https://github.com/Prateek1771/codeSensei",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "/code.png",
+      video: "",
+    },
+
+    {
+      title: " KisanSethu",
+      href: "https://github.com/Prateek1771/kisansethu.git",
+      dates: "",
+      active: true,
+      description:
+        "This mobile app provides personalized crop suggestions based on user needs and supports multiple languages to make agricultural information accessible to all farmers.",
+      technologies: [
+        "React Native",
+        "Typescript",
+        "TailwindCSS",
+        "Open AI",
+      ],
+      links: [
+        {
+          type: "Source",
+          href: "https://github.com/Prateek1771/kisansethu.git",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "/KS.jpg",
+      video: "",
+    },
     {
       title: " AI Story Teller",
       href: "https://github.com/Prateek1771/AI_Story_Teller.git",
@@ -125,8 +250,7 @@ export const DATA = {
         },
       ],
       image: "/story.png",
-      video:
-        "",
+      video: "",
     },
     {
       title: "My Cloud - Drop Box",
