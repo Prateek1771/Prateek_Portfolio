@@ -8,9 +8,9 @@ export const DATA = {
   location: "Karnataka, India",
   locationLink: "",
   description:
-    "A Full Stack Web Developer & AI Developer. I love building cool websites and intelligent AI solutions.",
+    "Aspiring AI Engineer & Full Stack Developer. I build scalable systems and intelligent AI-powered solutions.",
   summary:
-    "I’m a passionate [Full Stack Web Developer]() and [AI Enthusiast](), with a [Bachelors degree in Artificial Intelligence and Machine Learning](). I build modern and user-friendly web apps using React.js, Next.js, MongoDB and many more other tools. On the AI side, I work with Python, TensorFlow, OpenAI API and other vision libraries. I love learning, experimenting, and deliver products. I like to creating impactful solutions that combine the best of AI and web development. Get my resume [Click Here!](https://drive.google.com/file/d/1xkjDkiKaZ9JlADw4dtzoENiVIVNzxyOz/view?usp=sharing)",
+    "I’m an aspiring [AI Engineer]() and [Full Stack Developer]() with a [Bachelor’s degree in Artificial Intelligence and Machine Learning](). I build scalable frontend and backend systems using [React.js](), [FastAPI](), and [PostgreSQL](), and have hands-on experience developing AI-powered applications and automation workflows. I integrate LLM frameworks like [LangChain]() and [LangGraph]() to build intelligent decision systems and agentic workflows. With a strong foundation in [Data Structures, Algorithms, and System Design](), I love turning complex problems into impactful, production-ready solutions. Get my resume [Click Here!](/Prateek.pdf)",
 
   avatarUrl: "/me1.png",
 
@@ -86,16 +86,40 @@ export const DATA = {
 
   work: [
     {
+      company: "DigiBull AI",
+      href: "",
+      badges: [],
+      location: "Mysore, Karnataka, India",
+      title: "Junior Developer Intern",
+      logoUrl: "/digibull_ai_logo.jpeg",
+      start: "Sep 2025",
+      end: "Mar 2026",
+      description:
+        "Developed production-grade backend APIs using Python and FastAPI for manufacturing applications, implementing RESTful endpoints with proper error handling and request validation. Designed and optimized PostgreSQL database queries for production tracking system, implementing efficient indexing strategies and query optimization to handle concurrent requests. Built a multi-agent testing framework that automated testing workflows through an Agentic AI testing platform. Participated in code reviews and testing cycles, contributing to code quality improvements and ensuring adherence to best practices.",
+    },
+    {
+      company: "Unified Mentor",
+      href: "",
+      badges: [],
+      location: "Haryana, India",
+      title: "Frontend Web Developer Intern",
+      logoUrl: "/unifiedmentor.png",
+      start: "Sep 2024",
+      end: "Feb 2025",
+      description:
+        "Developed a full-stack e-commerce platform backend with Next.js API routes, reducing page load by 40% through server-side rendering optimization, code-splitting, and efficient API design patterns. Designed RESTful API architecture for product catalog, authentication, and order management with PostgreSQL, ensuring data consistency and implementing proper error handling for production readiness. Collaborated on code reviews focusing on API security, performance optimization, and maintainable code patterns in a shared codebase environment.",
+    },
+    {
       company: "Synkerr",
       href: "https://synkerrofficial.github.io/synkerr/",
       badges: [],
       location: "Remote",
       title: "React Js Frontend Developer Intern",
       logoUrl: "/syn.png",
-      start: "April 2024",
-      end: "June 2024",
+      start: "Apr 2024",
+      end: "Jun 2024",
       description:
-        "Developed modern, stylish websites using HTML, CSS, JavaScript, React JS,Aceternity UI, and Shad CN UI enhancing web aesthetics and functionality. Boosted company visibility by collaborating on web development projects, leading to a 20% increase in online traffic. Improved user experience through focused UI/UX design enhancements, resulting in a 15% increase in user engagement.",
+        "Developed modern, responsive websites using HTML, CSS, JavaScript, React JS, Aceternity UI, and Shadcn UI, enhancing web aesthetics and functionality. Boosted company visibility by collaborating on web development projects, leading to a 20% increase in online traffic. Improved user experience through focused UI/UX design enhancements, resulting in a 15% increase in user engagement.",
     },
   ],
 
@@ -107,6 +131,7 @@ export const DATA = {
       logoUrl: "/CIT_logo.png",
       start: "2021",
       end: "2025",
+      description: "CGPA: 8.1",
     },
     {
       school: "Shri Sharada PU College",
@@ -115,10 +140,41 @@ export const DATA = {
       logoUrl: "/pu.jpg",
       start: "2019",
       end: "2021",
+      description: "Score: 92.33%",
     },
   ],
 
   projects: [
+    {
+      title: "LingoLearn",
+      href: "https://github.com/Prateek1771/LingoLearn",
+      dates: "",
+      active: true,
+      description:
+        "An AI-powered learning platform that transforms passive YouTube watching into active, quiz-driven education. It pauses videos at strategic moments to test comprehension, supports 130+ languages, and generates certificates on completion.",
+      technologies: [
+        "Next.js",
+        "Groq",
+        "Lingo.dev SDK",
+        "html2canvas",
+        "jsPDF",
+        "YouTube InnerTube API",
+      ],
+      links: [
+        {
+          type: "Source",
+          href: "https://github.com/Prateek1771/LingoLearn",
+          icon: <Icons.github className="size-3" />,
+        },
+        {
+          type: "Blog",
+          href: "https://dev.to/prateek_hitli_5a7d19f1c87/i-got-distracted-watching-a-golang-tutorial-so-i-built-an-project-that-wont-let-you-843",
+          icon: <Icons.globe className="size-3" />,
+        },
+      ],
+      image: "",
+      video: "/LingoPromo.mp4",
+    },
     {
       title: " Talent-Meet",
       href: "https://github.com/Prateek1771/talent-meet",
@@ -340,6 +396,27 @@ export const DATA = {
     },
   ],
   hackathons: [
+    {
+      title: "Lingo.dev Hackathon",
+      dates: "2025",
+      location: "Online",
+      description:
+        "Built LingoLearn — an AI-powered platform that transforms passive YouTube watching into active, quiz-driven education. It pauses videos at strategic moments to test comprehension, supports 130+ languages via Lingo.dev SDK, and generates certificates on completion.",
+      image: "/lingodev.avif",
+      mlh: "/lingodev.avif",
+      links: [
+        {
+          title: "Source",
+          icon: <Icons.github className="size-3" />,
+          href: "https://github.com/Prateek1771/LingoLearn",
+        },
+        {
+          title: "Blog",
+          icon: <Icons.globe className="size-3" />,
+          href: "https://dev.to/prateek_hitli_5a7d19f1c87/i-got-distracted-watching-a-golang-tutorial-so-i-built-an-project-that-wont-let-you-843",
+        },
+      ],
+    },
     {
       title: "JITHACK 24",
       dates: "June 23rd - 25th, 2024",
