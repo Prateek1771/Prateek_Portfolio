@@ -1,0 +1,11 @@
+Junior Developer Intern
+DigiBull AI
+Sep 2025– Mar 2026
+Mysore, Karnataka, India
+• Developed production-grade backend APIs using Python and FastAPI for manufacturing applications, implementing
+RESTful endpoints with proper error handling and request validation
+• Designed and optimized PostgreSQL database queries for production tracking system, implementing efficient indexing
+strategies and query optimization to handle concurrent requests
+• Built a multi agent testing Framework which automated the testing (built a automated Agentic AI testing platform)
+• Participated in code reviews and testing cycles with development team, contributing to code quality improvements and
+ensuring adherence to best practices for production 
