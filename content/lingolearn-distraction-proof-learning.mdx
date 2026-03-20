@@ -1,0 +1,206 @@
+---
+title: "I Got Distracted Watching a Golang Tutorial. So I Built a Project That Won't Let You."
+publishedAt: "2025-03-15"
+summary: "How I turned a YouTube distraction spiral into LingoLearn — an AI-powered platform that pauses videos and quizzes you to ensure you actually learn."
+---
+
+## The Problem
+
+You open YouTube to learn Go. Twenty minutes later you're watching a video about the history of Nintendo. We've all been there.
+
+The issue isn't willpower — it's that passive video watching creates the *illusion* of learning. You feel productive. Your brain gets dopamine hits from "interesting content." But without active recall, retention drops to near zero within 24 hours.
+
+I was mid-way through a Golang tutorial when I caught myself tabbed out, reading about something completely unrelated. That was the moment I decided to build a solution instead of just closing the tab.
+
+## The Solution: LingoLearn
+
+LingoLearn is an AI-powered learning platform that:
+
+1. **Intercepts** YouTube videos at configurable intervals
+2. **Pauses** playback and presents context-aware quiz questions
+3. **Adapts** quiz frequency based on your performance
+4. **Tracks** comprehension over time with detailed analytics
+
+You can't skip the quiz. You can't dismiss it. You answer, get feedback, and only then does the video resume.
+
+**Live demo:** [lingolearn.vercel.app](https://lingolearn.vercel.app)
+**GitHub:** [github.com/Prateek-Hitlikar/LingoLearn](https://github.com/Prateek-Hitlikar/LingoLearn)
+
+---
+
+## Technical Architecture
+
+LingoLearn processes videos through a 4-stage pipeline:
+
+```
+YouTube URL → Transcript Extraction → LLM Question Generation → Quiz Delivery → Analytics
+```
+
+### Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Frontend | Next.js 14, TypeScript, Tailwind CSS |
+| Backend | Node.js, Express |
+| AI | Google Gemini 1.5 Flash |
+| Database | PostgreSQL (Neon), Prisma ORM |
+| Auth | NextAuth.js |
+| Deployment | Vercel + Railway |
+
+### Adaptive Quiz Frequency
+
+The system adjusts how often it interrupts you based on how well you're doing:
+
+| Score Range | Quiz Interval | Logic |
+|-------------|--------------|-------|
+| 90–100% | Every 10 min | You're crushing it — less interruption |
+| 70–89% | Every 7 min | Good retention, slight nudge |
+| 50–69% | Every 5 min | Average — stay on your toes |
+| Below 50% | Every 3 min | You need more check-ins |
+
+This means the app gets *harder* to ignore when you're struggling — exactly when you need it most.
+
+---
+
+## Key Technical Insights
+
+### Transcript Extraction
+
+YouTube's official API doesn't expose transcripts. I used `youtube-transcript` to scrape them, with a fallback chain:
+
+```typescript
+async function getTranscript(videoId: string): Promise<string> {
+  try {
+    const transcript = await YoutubeTranscript.fetchTranscript(videoId);
+    return transcript
+      .map((entry) => entry.text)
+      .join(" ")
+      .replace(/\[.*?\]/g, "") // strip [Music], [Applause] etc.
+      .trim();
+  } catch (error) {
+    // Fallback: attempt with different language params
+    const transcript = await YoutubeTranscript.fetchTranscript(videoId, {
+      lang: "en",
+    });
+    return transcript.map((entry) => entry.text).join(" ");
+  }
+}
+```
+
+Auto-generated captions have noise — filler words, misheard phrases, missing punctuation. The LLM prompt instructs Gemini to treat the transcript as a rough approximation and focus on conceptual understanding rather than verbatim recall.
+
+### Nested Translation Pipeline
+
+One of the more interesting features is multi-language support. When a non-English user watches an English video, the pipeline:
+
+1. Extracts English transcript
+2. Translates it to the user's preferred language
+3. Generates questions in that language
+4. Accepts answers in that language
+5. Evaluates correctness with language-aware grading
+
+This required careful prompt engineering — naive translation of questions leads to awkward phrasing. I ended up generating questions in English first, then translating the full Q&A pair together, which preserved natural phrasing better.
+
+### The Caching Bug That Wasted 6 Hours
+
+I implemented aggressive caching of generated questions to avoid re-querying Gemini for the same video segment. The bug: I was caching by `videoId + timestamp`, but the timestamp was being floored to the nearest minute.
+
+Two users watching the same video at 4:01 and 4:02 would generate different cache keys, doubling API calls. Worse, the same user rewinding slightly would get a completely different set of questions.
+
+The fix was to cache by `videoId + segmentIndex` (which interval of the video they're in), making caching deterministic and dramatically reducing Gemini API costs.
+
+---
+
+## Design Decisions & Rejected Alternatives
+
+**Why Gemini over GPT-4?**
+Rate limits and cost. Gemini 1.5 Flash has generous free tier limits which made development iteration fast. For a hackathon, burn rate matters.
+
+**Why not use a vector DB for question deduplication?**
+Overkill for MVP. Simple content hashing across the session was sufficient to avoid repeating questions within a single viewing session.
+
+**Why Next.js over a pure SPA?**
+Server-side rendering for the analytics dashboard meant the charts loaded instantly rather than requiring a client-side fetch waterfall. SEO wasn't the goal — performance was.
+
+**Rejected: Browser extension approach**
+My initial plan was a Chrome extension that overlaid quizzes directly on youtube.com. I dropped it because:
+- Extension review takes time (bad for hackathons)
+- YouTube's CSP headers made DOM injection unreliable
+- Embedding an iframe within youtube.com caused auth cookie conflicts
+
+The "bring your video URL to our platform" approach trades convenience for reliability.
+
+---
+
+## Gamification & Personality
+
+Dry quiz feedback kills motivation. LingoLearn uses personality-aware feedback:
+
+- **Correct + confident**: "Nailed it. Next."
+- **Correct + hesitant phrasing**: "Right answer, but you sound unsure — worth reviewing."
+- **Wrong + close**: "You were in the right neighborhood. Here's what you missed:"
+- **Wrong + way off**: "Let's back up. The video covers this at [timestamp]."
+
+The timestamps in feedback are clickable — they jump the video back to the relevant section. This closes the feedback loop: wrong answer → return to source → re-watch → retry.
+
+---
+
+## Technical Debt & Trade-offs
+
+**Things I'd fix with more time:**
+
+1. **Question quality variance**: Gemini occasionally generates trivial or ambiguous questions. A human-in-the-loop review queue + community upvoting would improve this over time.
+
+2. **No offline support**: If the Gemini API is down, the whole quiz pipeline fails. A local fallback model (even a small one) would improve resilience.
+
+3. **Transcript quality for non-English videos**: Auto-generated captions in Hindi or Spanish are notably worse than English ones. The quiz quality degrades accordingly.
+
+4. **Session persistence**: If you close the tab mid-video, your progress is partially lost. Proper session checkpointing would fix this.
+
+---
+
+## Getting Started
+
+```bash
+# Clone the repo
+git clone https://github.com/Prateek-Hitlikar/LingoLearn.git
+cd LingoLearn
+
+# Install dependencies
+npm install
+
+# Set up environment variables
+cp .env.example .env.local
+# Add your GEMINI_API_KEY, DATABASE_URL, NEXTAUTH_SECRET
+
+# Run database migrations
+npx prisma migrate dev
+
+# Start development server
+npm run dev
+```
+
+Visit `http://localhost:3000`, paste any YouTube URL, and try to stay focused.
+
+---
+
+## Next Steps for Contributors
+
+The project is open source and I'd love help with:
+
+- **Better question types**: Right now it's only multiple choice. Fill-in-the-blank and short answer would test deeper recall.
+- **Spaced repetition integration**: Connecting quiz history to an Anki-style review schedule.
+- **Mobile app**: The web app works on mobile but a native experience would be smoother.
+- **Video platform support**: Coursera, Udemy, and Vimeo all have learners who'd benefit from this.
+
+---
+
+## Acknowledgments
+
+Built during the **Dev.to Hackathon** (March 2025). Thanks to the organizers for the push, and to everyone who gave feedback during the 48-hour sprint.
+
+If you've ever opened a tutorial and emerged 40 minutes later knowing more about penguins than the original topic — this one's for you.
+
+---
+
+*Prateek Hitlikar · [GitHub](https://github.com/Prateek-Hitlikar) · [LinkedIn](https://linkedin.com/in/prateek-hitlikar)*
