@@ -1,10 +1,27 @@
 import BlurFade from "@/components/magicui/blur-fade";
 import { getBlogPosts } from "@/data/blog";
+import { DATA } from "@/data/resume";
 import Link from "next/link";
 
 export const metadata = {
   title: "Blog",
   description: "My thoughts on software development, life, and more.",
+  alternates: {
+    canonical: `${DATA.url}/blog`,
+  },
+  openGraph: {
+    title: "Blog",
+    description: "My thoughts on software development, life, and more.",
+    url: `${DATA.url}/blog`,
+    siteName: DATA.name,
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    title: "Blog",
+    card: "summary_large_image",
+    description: "My thoughts on software development, life, and more.",
+  },
 };
 
 const BLUR_FADE_DELAY = 0.04;

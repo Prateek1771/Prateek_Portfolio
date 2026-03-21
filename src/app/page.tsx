@@ -14,16 +14,53 @@ const BLUR_FADE_DELAY = 0.04;
 export default function Page() {
   return (
     <main className="flex flex-col min-h-[100dvh] space-y-10">
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            name: DATA.name,
+            url: DATA.url,
+            image: `${DATA.url}${DATA.avatarUrl}`,
+            sameAs: [
+              DATA.contact.social.GitHub.url,
+              DATA.contact.social.LinkedIn.url,
+              DATA.contact.social.X.url,
+            ],
+            jobTitle: "AI Engineer & Full Stack Developer",
+            description: DATA.description,
+            email: DATA.contact.email,
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: DATA.location,
+              addressCountry: "IN",
+            },
+            knowsAbout: [...DATA.skills],
+            alumniOf: {
+              "@type": "CollegeOrUniversity",
+              name: DATA.education[0].school,
+              url: DATA.education[0].href,
+            },
+            worksFor: {
+              "@type": "Organization",
+              name: DATA.work[0].company,
+            },
+          }),
+        }}
+      />
       <section id="hero">
         <div className="mx-auto w-full max-w-2xl space-y-8">
           <div className="gap-2 flex justify-between">
             <div className="flex-col flex flex-1 space-y-1.5">
-              <BlurFadeText
-                delay={BLUR_FADE_DELAY}
-                className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
-                yOffset={8}
-                text={`Hi, I'm ${DATA.name.split(" ")[0]} 👋`}
-              />
+              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
+                <BlurFadeText
+                  delay={BLUR_FADE_DELAY}
+                  yOffset={8}
+                  text={`Hi, I'm ${DATA.name.split(" ")[0]} 👋`}
+                />
+              </h1>
               <BlurFadeText
                 className="max-w-[600px] md:text-xl"
                 delay={BLUR_FADE_DELAY}

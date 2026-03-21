@@ -2,11 +2,11 @@ import { Icons } from "@/components/icons";
 import { HomeIcon, NotebookIcon } from "lucide-react";
 
 export const DATA = {
-  name: "Prateek_Hitli",
+  name: "Prateek Hitli",
   initials: "PH",
-  url: "https://github.com/Prateek1771",
+  url: "https://prateekhitli.com",
   location: "Karnataka, India",
-  locationLink: "",
+  locationLink: "https://www.google.com/maps/place/Karnataka,+India",
   description:
     "Aspiring AI Engineer & Full Stack Developer. I build scalable systems and intelligent AI-powered solutions.",
   summary:
@@ -76,7 +76,7 @@ export const DATA = {
      
       email: {
         name: "Send Email",
-        url: "#",
+        url: "mailto:hitliprateek5@gmail.com",
         icon: Icons.email,
 
         navbar: false,
