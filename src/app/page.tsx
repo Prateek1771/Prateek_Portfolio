@@ -265,7 +265,7 @@ export default function Page() {
                 >
                   on LinkedIn or twitter.
                 </Link>{" "}
-                 I'm looking forward to your message.
+                 I&apos;m looking forward to your message.
               </p>
             </div>
           </BlurFade>
