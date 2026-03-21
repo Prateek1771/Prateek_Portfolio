@@ -1,6 +1,11 @@
 {
   "version": 1,
   "skills": {
+    "baoyu-image-gen": {
+      "source": "jimliu/baoyu-skills",
+      "sourceType": "github",
+      "computedHash": "0c6d0a799924d77f3f2eab28600576b565c7af180d0bca0ac1bca402f629cde5"
+    },
     "seo-audit": {
       "source": "coreyhaines31/marketingskills",
       "sourceType": "github",

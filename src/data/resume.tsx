@@ -8,9 +8,9 @@ export const DATA = {
   location: "Karnataka, India",
   locationLink: "https://www.google.com/maps/place/Karnataka,+India",
   description:
-    "Aspiring AI Engineer & Full Stack Developer. I build scalable systems and intelligent AI-powered solutions.",
+    "AI Engineer & Full Stack Developer. I build scalable systems and intelligent AI-powered solutions.",
   summary:
-    "I’m an aspiring [AI Engineer]() and [Full Stack Developer]() with a [Bachelor’s degree in Artificial Intelligence and Machine Learning](). I build scalable frontend and backend systems using [React.js](), [FastAPI](), and [PostgreSQL](), and have hands-on experience developing AI-powered applications and automation workflows. I integrate LLM frameworks like [LangChain]() and [LangGraph]() to build intelligent decision systems and agentic workflows. I love turning complex problems into impactful, production-ready solutions. Get my resume [Click Here!](/Prateek.pdf)",
+    "I’m an [AI Engineer]() and [Full Stack Developer]() with a [Bachelor’s degree in Artificial Intelligence and Machine Learning](). I build scalable frontend and backend systems using [React.js](), [FastAPI](), and [PostgreSQL](), and have hands-on experience developing AI-powered applications and automation workflows. I integrate LLM frameworks like [LangChain]() and [LangGraph]() to build intelligent decision systems and agentic workflows. I love turning complex problems into impactful, production-ready solutions. Get my resume [Click Here!](/Prateek.pdf)",
 
   avatarUrl: "/me1.png",
 
