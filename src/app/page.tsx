@@ -197,6 +197,7 @@ export default function Page() {
                   tags={project.technologies}
                   image={project.image}
                   video={project.video}
+                  youtubeId={"youtubeId" in project ? (project as any).youtubeId : undefined}
                   links={project.links}
                 />
               </BlurFade>

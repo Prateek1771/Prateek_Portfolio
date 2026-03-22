@@ -20,6 +20,7 @@ interface Props {
   link?: string;
   image?: string;
   video?: string;
+  youtubeId?: string;
   links?: readonly {
     icon: React.ReactNode;
     type: string;
@@ -37,6 +38,7 @@ export function ProjectCard({
   link,
   image,
   video,
+  youtubeId,
   links,
   className,
 }: Props) {
@@ -50,6 +52,14 @@ export function ProjectCard({
         href={href || "#"}
         className={cn("block cursor-pointer", className)}
       >
+        {youtubeId && (
+          <iframe
+            src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&loop=1&mute=1&playlist=${youtubeId}&controls=0&playsinline=1&modestbranding=1`}
+            allow="autoplay; encrypted-media"
+            allowFullScreen
+            className="pointer-events-none mx-auto h-40 w-full"
+          />
+        )}
         {video && (
           <video
             src={video}

@@ -146,6 +146,35 @@ export const DATA = {
 
   projects: [
     {
+      title: "Hot Wheels x Pantone — Silver Series",
+      href: "https://hotwheels-pantone.vercel.app",
+      dates: "",
+      active: true,
+      description:
+        "An interactive, scroll-driven showcase for the Hot Wheels x Pantone Silver Series collection. Six die-cast vehicles, each paired with a distinct Pantone color, with deep-dive origin stories, full media galleries, and a Remotion-powered promo video.",
+      technologies: [
+        "React 19",
+        "Vite 8",
+        "Tailwind CSS 4",
+        "Remotion 4",
+      ],
+      links: [
+        {
+          type: "Website",
+          href: "https://hotwheels-pantone.vercel.app",
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
+          type: "Source",
+          href: "https://github.com/Prateek1771/hotwheels_pantone",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "",
+      video: "",
+      youtubeId: "CzXD7SorU98",
+    },
+    {
       title: "LingoLearn",
       href: "https://github.com/Prateek1771/LingoLearn",
       dates: "",
