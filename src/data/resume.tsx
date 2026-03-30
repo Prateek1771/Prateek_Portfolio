@@ -146,6 +146,41 @@ export const DATA = {
 
   projects: [
     {
+      title: "GuardRAG",
+      href: "https://github.com/Prateek1771/GuardRAG",
+      dates: "",
+      active: true,
+      description:
+        "An enterprise-grade RAG chatbot with built-in compliance guardrails, multi-tenant architecture, and role-based access control. Supports PDF/DOCX/XLSX ingestion, namespace-isolated Pinecone vector storage, and a four-mode guardrails engine (Block, Alert, Approval, Redact) with full audit logging.",
+      technologies: [
+        "React 19",
+        "TypeScript",
+        "Vite",
+        "Tailwind CSS 4",
+        "FastAPI",
+        "LangChain",
+        "OpenAI GPT-4o",
+        "Pinecone",
+        "SQLite",
+        "Docker",
+      ],
+      links: [
+        {
+          type: "Website",
+          href: "https://huggingface.co/spaces/prateek1771/RagGuardrail",
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
+          type: "Source",
+          href: "https://github.com/Prateek1771/GuardRAG",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "",
+      video: "",
+      youtubeId: "GpaCrQy-3Rg",
+    },
+    {
       title: "Hot Wheels x Pantone — Silver Series",
       href: "https://hotwheels-pantone.vercel.app",
       dates: "",
@@ -338,37 +373,6 @@ export const DATA = {
       video: "",
     },
     {
-      title: "My Cloud - Drop Box",
-      href: "https://github.com/Prateek1771/My_Cloud.git",
-      dates: "",
-      active: true,
-      description:
-        "Designed, developed a Next.js application that allows users to upload and download files seamlessly. It uses Firebase for data storage and security.",
-      technologies: [
-        "Next.js",
-        "Firebse",
-        "Typescript",
-        "TailwindCSS", 
-        "Shadcn UI",
-        "Magic UI",
-        "spline 3d model"
-      ],
-      links: [
-        {
-          type: "Website",
-          href: "https://github.com/Prateek1771/My_Cloud.git",
-          icon: <Icons.globe className="size-3" />,
-        },
-        {
-          type: "Source",
-          href: "https://github.com/Prateek1771/My_Cloud.git",
-          icon: <Icons.github className="size-3" />,
-        },
-      ],
-      image: "",
-      video: "https://cdn.magicui.design/bento-grid.mp4",
-    },
-    {
       title: "Commu.Ai",
       href: "https://github.com/Prateek1771/Commu.ai.git",
       dates: "",
@@ -427,7 +431,7 @@ export const DATA = {
   hackathons: [
     {
       title: "Lingo.dev Hackathon",
-      dates: "2025",
+      dates: "Feb - Mar 2026",
       location: "Online",
       description:
         "Built LingoLearn — an AI-powered platform that transforms passive YouTube watching into active, quiz-driven education. It pauses videos at strategic moments to test comprehension, supports 130+ languages via Lingo.dev SDK, and generates certificates on completion.",
