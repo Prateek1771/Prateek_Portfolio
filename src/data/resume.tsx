@@ -76,7 +76,7 @@ export const DATA = {
      
       email: {
         name: "Send Email",
-        url: "mailto:hitliprateek5@gmail.com",
+        url: "mailto:hitliprateek6@gmail.com",
         icon: Icons.email,
 
         navbar: false,
@@ -90,7 +90,7 @@ export const DATA = {
       href: "",
       badges: [],
       location: "Mysore, Karnataka, India",
-      title: "Junior Developer Intern",
+      title: "Junior Developer",
       logoUrl: "/digibull_ai_logo.jpeg",
       start: "Sep 2025",
       end: "Mar 2026",
