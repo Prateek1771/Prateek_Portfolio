@@ -263,6 +263,8 @@ export default function Page() {
                 <Link
                   href={DATA.contact.social.X.url}
                   className="text-blue-500 hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   on LinkedIn or twitter.
                 </Link>{" "}
