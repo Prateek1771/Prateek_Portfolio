@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import { NekoScript } from "@/components/neko";
+import Loader from "@/components/loader";
 import "./globals.css";
 
 const fontSans = FontSans({
@@ -64,6 +65,7 @@ export default function RootLayout({
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="light">
+          <Loader />
           <TooltipProvider delayDuration={0}>
             {children}
             <Navbar />
