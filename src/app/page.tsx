@@ -23,7 +23,7 @@ export default async function Page() {
     .slice(0, 2);
 
   return (
-    <main className="flex flex-col min-h-[100dvh] divide-y divide-border [&>section]:py-10">
+    <main className="flex flex-col min-h-dvh divide-y divide-border [&>section]:py-10">
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -122,23 +122,24 @@ export default async function Page() {
           <h2 className="font-display text-xl font-bold">About</h2>
         </BlurFade>
         <BlurFade delay={BLUR_FADE_DELAY * 4}>
-          <Markdown
-            className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert"
-            components={{
-              a: ({ href, children }) =>
-                href?.endsWith(".pdf") ? (
-                  <a href={href} download>
-                    {children}
-                  </a>
-                ) : (
-                  <a href={href} target="_blank" rel="noopener noreferrer">
-                    {children}
-                  </a>
-                ),
-            }}
-          >
-            {DATA.summary}
-          </Markdown>
+          <div className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
+            <Markdown
+              components={{
+                a: ({ href, children }) =>
+                  href?.endsWith(".pdf") ? (
+                    <a href={href} download>
+                      {children}
+                    </a>
+                  ) : (
+                    <a href={href} target="_blank" rel="noopener noreferrer">
+                      {children}
+                    </a>
+                  ),
+              }}
+            >
+              {DATA.summary}
+            </Markdown>
+          </div>
         </BlurFade>
       </section>
       <section id="work">

@@ -4,7 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { ChevronRightIcon } from "lucide-react";
 import Link from "next/link";
 import React from "react";
@@ -57,7 +57,7 @@ export const ResumeCard = ({
             <AvatarFallback>{altText[0]}</AvatarFallback>
           </Avatar>
         </div>
-        <div className="flex-grow ml-4 items-center flex-col group">
+        <div className="grow ml-4 items-center flex-col group">
           <CardHeader>
             <div className="flex items-center justify-between gap-x-2 text-base">
               <h3 className="inline-flex items-center justify-center font-display font-bold leading-none text-xs sm:text-sm">
