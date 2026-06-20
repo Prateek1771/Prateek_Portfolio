@@ -10,7 +10,7 @@ export default function Hand({ onComplete }: { onComplete: () => void }) {
       style={{ fontSize: 72, color: 'currentColor' }}
       onComplete={onComplete}
     >
-      Prateek Hitli
+      Prateek
     </TegakiRenderer>
   )
 }
