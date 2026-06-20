@@ -26,65 +26,77 @@
 
 @layer base {
     :root {
-      --background: 0 0% 100%;
-      --foreground: 210 11.1% 3.53%;
+      /* Warm brutalist — light (beige / near-black). HSL triplets. */
+      --background: 44 27% 92%;
+      --foreground: 240 10% 6%;
 
-      --card: 0 0% 100%;
-      --card-foreground: 210 11.1% 3.53%;
+      --card: 44 27% 92%;
+      --card-foreground: 240 10% 6%;
 
-      --popover: 0 0% 100%;
-      --popover-foreground: 210 11.1% 3.53%;
+      --popover: 44 27% 92%;
+      --popover-foreground: 240 10% 6%;
 
-      --primary: 0 0% 9%;
-      --primary-foreground: 0 0% 98%;
+      --primary: 240 10% 6%;
+      --primary-foreground: 44 27% 92%;
 
-      --secondary: 0 0% 96.1%;
-      --secondary-foreground: 0 0% 9%;
+      --secondary: 40 18% 88%;
+      --secondary-foreground: 240 10% 6%;
 
-      --muted: 0 0% 96.1%;
-      --muted-foreground: 0 0% 45.1%;
+      --muted: 40 18% 88%;
+      --muted-foreground: 40 10% 42%;
 
-      --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
+      --accent: 40 18% 88%;
+      --accent-foreground: 240 10% 6%;
 
-      --destructive: 0 84.2% 60.2%;
-      --destructive-foreground: 0 0% 98%;
+      --destructive: 0 72% 42%;
+      --destructive-foreground: 44 27% 92%;
 
-      --border: 0 0% 89.8%;
-      --input: 0 0% 89.8%;
-      --ring: 0 0% 3.9%;
+      --border: 40 13% 78%;
+      --input: 40 13% 78%;
+      --ring: 240 10% 6%;
 
-      --radius: 0.5rem;
+      /* Earthy brand accent (#7A3B2E). */
+      --brand: 11 45% 33%;
+      --brand-foreground: 44 27% 92%;
+
+      --radius: 0rem;
+
+      --font-display: "Cabinet Grotesk", ui-sans-serif, system-ui, sans-serif;
     }
 
     .dark {
-      --background: 210 11.1% 3.53%;
-      --foreground: 0 0% 98%;
+      /* Warm brutalist — dark (charcoal / beige). */
+      --background: 240 10% 6%;
+      --foreground: 44 27% 92%;
 
-      --card: 210 11.1% 3.53%;
-      --card-foreground: 0 0% 98%;
+      --card: 240 10% 6%;
+      --card-foreground: 44 27% 92%;
 
-      --popover: 210 11.1% 3.53%;
-      --popover-foreground: 0 0% 98%;
+      --popover: 240 10% 6%;
+      --popover-foreground: 44 27% 92%;
 
-      --primary: 0 0% 98%;
-      --primary-foreground: 0 0% 9%;
+      --primary: 44 27% 92%;
+      --primary-foreground: 240 10% 6%;
 
-      --secondary: 0 0% 14.9%;
-      --secondary-foreground: 0 0% 98%;
+      --secondary: 40 6% 14%;
+      --secondary-foreground: 44 27% 92%;
 
-      --muted: 0 0% 14.9%;
-      --muted-foreground: 0 0% 63.9%;
+      --muted: 40 6% 14%;
+      --muted-foreground: 40 8% 50%;
 
-      --accent: 0 0% 14.9%;
-      --accent-foreground: 0 0% 98%;
+      --accent: 40 6% 14%;
+      --accent-foreground: 44 27% 92%;
 
-      --destructive: 0 62.8% 30.6%;
-      --destructive-foreground: 0 0% 98%;
+      --destructive: 0 62% 40%;
+      --destructive-foreground: 44 27% 92%;
 
-      --border: 0 0% 14.9%;
-      --input: 0 0% 14.9%;
-      --ring: 0 0% 83.1%;
+      --border: 40 8% 20%;
+      --input: 40 8% 20%;
+      --ring: 44 27% 92%;
+
+      /* Slightly lighter brand so it reads on charcoal. */
+      --brand: 14 52% 48%;
+      --brand-foreground: 240 10% 6%;
     }
   }
 
@@ -97,14 +109,48 @@
     }
   }
 
+  /* Brutalist typography helpers. */
+  .font-display {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: 0.01em;
+  }
+  .wordmark {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    line-height: 0.95;
+  }
+  .label {
+    font-size: 0.6875rem; /* 11px */
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  /* Color-flood interaction for text rows / tags. */
+  .flood {
+    transition: background-color 0.18s ease, color 0.18s ease,
+      border-color 0.14s ease;
+  }
+  .flood:hover {
+    background-color: hsl(var(--brand));
+    color: hsl(var(--brand-foreground));
+    border-color: hsl(var(--brand));
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .flood {
+      transition: none;
+    }
+  }
+
   h3 code {
     @apply !text-lg md:!text-xl;
   }
-  
+
   pre {
     @apply !px-0 rounded-lg overflow-x-auto py-4
   }
-   
+
   pre [data-line] {
     @apply px-4
   }
@@ -112,17 +158,17 @@
   code {
     @apply text-sm md:text-base !leading-loose;
   }
-  
+
   pre > code {
     counter-reset: line;
   }
-  
+
   code[data-theme*=" "],
   code[data-theme*=" "] span {
     color: var(--shiki-light);
     background-color: var(--shiki-light-bg);
   }
-   
+
   @media (prefers-color-scheme: dark) {
     code[data-theme*=" "],
     code[data-theme*=" "] span {
@@ -130,25 +176,25 @@
       background-color: var(--shiki-dark-bg);
     }
   }
-  
+
   code[data-line-numbers] {
     counter-reset: line;
   }
-  
+
   code[data-line-numbers] > [data-line]::before {
     counter-increment: line;
     content: counter(line);
     @apply inline-block w-4 mr-4 text-right text-gray-500;
   }
- 
+
   code {
     counter-reset: line;
   }
- 
+
   code > [data-line]::before {
   counter-increment: line;
   content: counter(line);
- 
+
   /* Other styling */
   display: inline-block;
   width: 1rem;
@@ -156,11 +202,11 @@
   text-align: right;
   color: gray;
 }
- 
+
 code[data-line-numbers-max-digits="2"] > [data-line]::before {
   width: 2rem;
 }
- 
+
 code[data-line-numbers-max-digits="3"] > [data-line]::before {
   width: 3rem;
 }

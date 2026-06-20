@@ -6,14 +6,24 @@ import { ResumeCard } from "@/components/resume-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { DATA } from "@/data/resume";
+import { getBlogPosts } from "@/data/blog";
+import { CopyEmail } from "@/components/copy-email";
 import Link from "next/link";
 import Markdown from "react-markdown";
 
 const BLUR_FADE_DELAY = 0.04;
 
-export default function Page() {
+export default async function Page() {
+  const posts = (await getBlogPosts())
+    .sort(
+      (a, b) =>
+        new Date(b.metadata.publishedAt).getTime() -
+        new Date(a.metadata.publishedAt).getTime()
+    )
+    .slice(0, 2);
+
   return (
-    <main className="flex flex-col min-h-[100dvh] space-y-10">
+    <main className="flex flex-col min-h-[100dvh] divide-y divide-border [&>section]:py-10">
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -54,7 +64,7 @@ export default function Page() {
         <div className="mx-auto w-full max-w-2xl space-y-8">
           <div className="gap-2 flex justify-between">
             <div className="flex-col flex flex-1 space-y-1.5">
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
+              <h1 className="wordmark text-3xl sm:text-5xl xl:text-6xl/none">
                 <BlurFadeText
                   delay={BLUR_FADE_DELAY}
                   yOffset={8}
@@ -66,6 +76,37 @@ export default function Page() {
                 delay={BLUR_FADE_DELAY}
                 text={DATA.description}
               />
+              <BlurFade delay={BLUR_FADE_DELAY * 2}>
+                <div className="label flex flex-wrap items-center gap-x-2 gap-y-1 pt-1 text-muted-foreground">
+                  <span>AI Engineer</span>
+                  <span aria-hidden>·</span>
+                  <span>Full Stack Developer</span>
+                  <span aria-hidden>·</span>
+                  <a
+                    href={`mailto:${DATA.contact.email}`}
+                    className="transition-colors hover:text-brand"
+                  >
+                    {DATA.contact.email}
+                  </a>
+                  <CopyEmail email={DATA.contact.email} />
+                </div>
+              </BlurFade>
+              <BlurFade delay={BLUR_FADE_DELAY * 2.5}>
+                <div className="flex flex-wrap items-center gap-4 pt-2">
+                  {Object.entries(DATA.contact.social).map(([name, social]) => (
+                    <a
+                      key={name}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={name}
+                      className="text-muted-foreground transition-colors hover:text-brand"
+                    >
+                      <social.icon className="size-4" />
+                    </a>
+                  ))}
+                </div>
+              </BlurFade>
             </div>
             <BlurFade delay={BLUR_FADE_DELAY}>
               <Avatar className="size-28 border">
@@ -78,7 +119,7 @@ export default function Page() {
       </section>
       <section id="about">
         <BlurFade delay={BLUR_FADE_DELAY * 3}>
-          <h2 className="text-xl font-bold">About</h2>
+          <h2 className="font-display text-xl font-bold">About</h2>
         </BlurFade>
         <BlurFade delay={BLUR_FADE_DELAY * 4}>
           <Markdown
@@ -103,7 +144,7 @@ export default function Page() {
       <section id="work">
         <div className="flex min-h-0 flex-col gap-y-3">
           <BlurFade delay={BLUR_FADE_DELAY * 5}>
-            <h2 className="text-xl font-bold">Work Experience</h2>
+            <h2 className="font-display text-xl font-bold">Work Experience</h2>
           </BlurFade>
           {DATA.work.map((work, id) => (
             <BlurFade
@@ -128,7 +169,7 @@ export default function Page() {
       <section id="education">
         <div className="flex min-h-0 flex-col gap-y-3">
           <BlurFade delay={BLUR_FADE_DELAY * 7}>
-            <h2 className="text-xl font-bold">Education</h2>
+            <h2 className="font-display text-xl font-bold">Education</h2>
           </BlurFade>
           {DATA.education.map((education, id) => (
             <BlurFade
@@ -152,7 +193,7 @@ export default function Page() {
       <section id="skills">
         <div className="flex min-h-0 flex-col gap-y-3">
           <BlurFade delay={BLUR_FADE_DELAY * 9}>
-            <h2 className="text-xl font-bold">Skills</h2>
+            <h2 className="font-display text-xl font-bold">Skills</h2>
           </BlurFade>
           <div className="flex flex-wrap gap-1">
             {DATA.skills.map((skill, id) => (
@@ -168,10 +209,10 @@ export default function Page() {
           <BlurFade delay={BLUR_FADE_DELAY * 11}>
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
+                <div className="label inline-block bg-brand px-3 py-1 text-brand-foreground">
                   My Projects
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                <h2 className="wordmark text-3xl sm:text-5xl">
                   Check out my latest work
                 </h2>
                 <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
@@ -210,10 +251,10 @@ export default function Page() {
           <BlurFade delay={BLUR_FADE_DELAY * 13}>
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
+                <div className="label inline-block bg-brand px-3 py-1 text-brand-foreground">
                   Hackathons
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                <h2 className="wordmark text-3xl sm:text-5xl">
                   I like building things
                 </h2>
                 <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
@@ -248,11 +289,65 @@ export default function Page() {
           </BlurFade>
         </div>
       </section>
+      <section id="blog">
+        <div className="flex min-h-0 flex-col gap-y-3">
+          <BlurFade delay={BLUR_FADE_DELAY * 15}>
+            <h2 className="font-display text-xl font-bold">Latest writing</h2>
+          </BlurFade>
+          <div className="border-t border-border">
+            {posts.map((post, id) => (
+              <BlurFade key={post.slug} delay={BLUR_FADE_DELAY * 16 + id * 0.05}>
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="group flex items-start justify-between gap-4 border-b border-border py-4"
+                >
+                  <div>
+                    <p className="font-display font-bold transition-colors group-hover:text-brand">
+                      {post.metadata.title}
+                    </p>
+                    {post.metadata.summary && (
+                      <p className="mt-1 text-sm text-muted-foreground">
+                        {post.metadata.summary}
+                      </p>
+                    )}
+                    <p className="label mt-1 text-muted-foreground">
+                      {post.metadata.publishedAt}
+                    </p>
+                  </div>
+                  <span className="label shrink-0 text-muted-foreground transition-colors group-hover:text-brand">
+                    Read →
+                  </span>
+                </Link>
+              </BlurFade>
+            ))}
+          </div>
+          <BlurFade delay={BLUR_FADE_DELAY * 17}>
+            <Link
+              href="/blog"
+              className="label inline-block border-b border-foreground pb-1 transition-opacity hover:opacity-60"
+            >
+              Show all blogs →
+            </Link>
+          </BlurFade>
+        </div>
+      </section>
+      <section id="quote">
+        <BlurFade delay={BLUR_FADE_DELAY * 18}>
+          <figure className="border border-border p-8">
+            <blockquote className="text-base italic leading-relaxed sm:text-lg">
+              &ldquo;Whatever you are, be a good one.&rdquo;
+            </blockquote>
+            <figcaption className="label mt-3 text-muted-foreground">
+              — Abraham Lincoln
+            </figcaption>
+          </figure>
+        </BlurFade>
+      </section>
       <section id="contact">
         <div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12">
           <BlurFade delay={BLUR_FADE_DELAY * 16}>
             <div className="space-y-3">
-              <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
+              <div className="label inline-block bg-brand px-3 py-1 text-brand-foreground">
                 Contact
               </div>
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
@@ -262,7 +357,7 @@ export default function Page() {
                 Want to chat? Just shoot me a direct message{" "}
                 <Link
                   href={DATA.contact.social.X.url}
-                  className="text-blue-500 hover:underline"
+                  className="text-brand hover:underline"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

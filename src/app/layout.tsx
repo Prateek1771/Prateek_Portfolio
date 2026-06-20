@@ -1,17 +1,19 @@
 import Navbar from "@/components/navbar";
+import { SiteFooter } from "@/components/site-footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { DATA } from "@/data/resume";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
-import { Inter as FontSans } from "next/font/google";
+import { Space_Mono as FontMono } from "next/font/google";
 import { NekoScript } from "@/components/neko";
 import Loader from "@/components/loader";
 import "./globals.css";
 
-const fontSans = FontSans({
+const fontMono = FontMono({
   subsets: ["latin"],
-  variable: "--font-sans",
+  weight: ["400", "700"],
+  variable: "--font-mono",
 });
 
 export const metadata: Metadata = {
@@ -58,17 +60,31 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link
+          rel="preconnect"
+          href="https://api.fontshare.com"
+          crossOrigin=""
+        />
+        <link
+          href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,700,500,400&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased max-w-2xl mx-auto py-12 sm:py-24 px-6",
-          fontSans.variable
+          "min-h-screen bg-background font-sans antialiased",
+          fontMono.variable
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="light">
           <Loader />
           <TooltipProvider delayDuration={0}>
-            {children}
             <Navbar />
+            <div className="mx-auto max-w-3xl px-6 py-12 sm:py-16">
+              {children}
+            </div>
+            <SiteFooter />
           </TooltipProvider>
         </ThemeProvider>
         <NekoScript />

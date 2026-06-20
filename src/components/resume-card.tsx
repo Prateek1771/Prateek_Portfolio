@@ -46,7 +46,7 @@ export const ResumeCard = ({
       target="_blank"
       rel="noopener noreferrer"
     >
-      <Card className="flex">
+      <Card className="flex border p-3 transition-colors hover:border-brand">
         <div className="flex-none">
           <Avatar className="border size-12 m-auto bg-muted-background dark:bg-foreground">
             <AvatarImage
@@ -60,7 +60,7 @@ export const ResumeCard = ({
         <div className="flex-grow ml-4 items-center flex-col group">
           <CardHeader>
             <div className="flex items-center justify-between gap-x-2 text-base">
-              <h3 className="inline-flex items-center justify-center font-semibold leading-none text-xs sm:text-sm">
+              <h3 className="inline-flex items-center justify-center font-display font-bold leading-none text-xs sm:text-sm">
                 {title}
                 {badges && (
                   <span className="inline-flex gap-x-1">

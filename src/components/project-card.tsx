@@ -45,12 +45,12 @@ export function ProjectCard({
   return (
     <Card
       className={
-        "flex flex-col overflow-hidden border hover:shadow-lg transition-all duration-300 ease-out h-full"
+        "group flex h-full flex-col overflow-hidden border transition-colors duration-200 ease-out hover:border-brand"
       }
     >
       <Link
         href={href || "#"}
-        className={cn("block cursor-pointer", className)}
+        className={cn("block cursor-pointer border-b border-border", className)}
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -82,10 +82,12 @@ export function ProjectCard({
           />
         )}
       </Link>
-      <CardHeader className="px-2">
+      <CardHeader className="px-3 pt-3">
         <div className="space-y-1">
-          <CardTitle className="mt-1 text-base">{title}</CardTitle>
-          <time className="font-sans text-xs">{dates}</time>
+          <CardTitle className="mt-1 font-display text-base font-bold transition-colors group-hover:text-brand">
+            {title}
+          </CardTitle>
+          <time className="label text-muted-foreground">{dates}</time>
           <div className="hidden font-sans text-xs underline print:visible">
             {link?.replace("https://", "").replace("www.", "").replace("/", "")}
           </div>
@@ -94,7 +96,7 @@ export function ProjectCard({
           </Markdown>
         </div>
       </CardHeader>
-      <CardContent className="mt-auto flex flex-col px-2">
+      <CardContent className="mt-auto flex flex-col px-3">
         {tags && tags.length > 0 && (
           <div className="mt-2 flex flex-wrap gap-1">
             {tags?.map((tag) => (
@@ -109,7 +111,7 @@ export function ProjectCard({
           </div>
         )}
       </CardContent>
-      <CardFooter className="px-2 pb-2">
+      <CardFooter className="px-3 pb-3">
         {links && links.length > 0 && (
           <div className="flex flex-row flex-wrap items-start gap-1">
             {links?.map((link, idx) => (
