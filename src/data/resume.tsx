@@ -266,6 +266,37 @@ export const DATA = {
       image: "/tmeet.png",
       video: "",
     },
+    {
+      title: "Vivah Styles",
+      href: "https://laura-dress.vercel.app",
+      dates: "",
+      active: true,
+      description:
+        "A staff-operated in-store platform for Indian wedding fashion boutiques — customer onboarding, AI-powered inventory and outfit matching, virtual try-on, billing, and sales analytics with role-based access for stylists, cashiers, and owners.",
+      technologies: [
+        "Next.js 16",
+        "React 19",
+        "Tailwind CSS 4",
+        "InsForge (Postgres)",
+        "Groq Vision",
+        "API4.AI",
+        "PostHog",
+      ],
+      links: [
+        {
+          type: "Website",
+          href: "https://laura-dress.vercel.app",
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
+          type: "Source",
+          href: "https://github.com/Prateek1771/Vivah_styles",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "",
+      video: "",
+    },
 
   ],
   hackathons: [
