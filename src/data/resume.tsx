@@ -2,7 +2,7 @@ import { Icons } from "@/components/icons";
 
 // Single source for the address so contact.email and the mailto: URL can't
 // drift apart again (they were 5@ and 6@).
-const EMAIL = "hitliprateek5@gmail.com";
+const EMAIL = "hitliprateek6@gmail.com";
 
 export const DATA = {
   name: "Prateek Hitli",
