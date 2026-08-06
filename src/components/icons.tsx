@@ -3,8 +3,10 @@ import { GlobeIcon, MailIcon } from "lucide-react";
 export type IconProps = React.HTMLAttributes<SVGElement>;
 
 export const Icons = {
-  globe: (props: IconProps) => <GlobeIcon {...props} />,
-  email: (props: IconProps) => <MailIcon {...props} />,
+  // 1.5, matching the reference's normal-weight icon set — lucide's default 2
+  // is heavier than the surrounding text, 1 is too faint at 18px.
+  globe: (props: IconProps) => <GlobeIcon strokeWidth={1.5} {...props} />,
+  email: (props: IconProps) => <MailIcon strokeWidth={1.5} {...props} />,
   linkedin: (props: IconProps) => (
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
       <title>LinkedIn</title>

@@ -1,17 +1,20 @@
-import BlurFade from "@/components/magicui/blur-fade";
+import { BlogList } from "@/components/blog-list";
+import { Quote } from "@/components/quote";
+import { SectionHeading } from "@/components/rows";
 import { getBlogPosts } from "@/data/blog";
 import { DATA } from "@/data/resume";
-import Link from "next/link";
+import { formatDate } from "@/lib/utils";
 
 export const metadata = {
   title: "Blog",
-  description: "My thoughts on software development, life, and more.",
+  description: "Thoughts, tutorials, and insights on engineering and programming.",
   alternates: {
     canonical: `${DATA.url}/blog`,
   },
   openGraph: {
     title: "Blog",
-    description: "My thoughts on software development, life, and more.",
+    description:
+      "Thoughts, tutorials, and insights on engineering and programming.",
     url: `${DATA.url}/blog`,
     siteName: DATA.name,
     locale: "en_US",
@@ -20,46 +23,56 @@ export const metadata = {
   twitter: {
     title: "Blog",
     card: "summary_large_image",
-    description: "My thoughts on software development, life, and more.",
+    description:
+      "Thoughts, tutorials, and insights on engineering and programming.",
   },
 };
 
-const BLUR_FADE_DELAY = 0.04;
-
 export default async function BlogPage() {
-  const posts = await getBlogPosts();
+  const posts = (await getBlogPosts())
+    .sort(
+      (a, b) =>
+        new Date(b.metadata.publishedAt).getTime() -
+        new Date(a.metadata.publishedAt).getTime()
+    )
+    .map((post) => ({
+      slug: post.slug,
+      title: post.metadata.title,
+      summary: post.metadata.summary ?? "",
+      // Formatted here so the client filter never ships a date library.
+      date: formatDate(post.metadata.publishedAt, { relative: false }),
+      tags: post.metadata.tags ?? [],
+    }));
 
   return (
-    <section>
-      <BlurFade delay={BLUR_FADE_DELAY}>
-        <h1 className="wordmark text-3xl mb-8">Blog</h1>
-      </BlurFade>
-      {posts
-        .sort((a, b) => {
-          if (
-            new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)
-          ) {
-            return -1;
-          }
-          return 1;
-        })
-        .map((post, id) => (
-          <BlurFade delay={BLUR_FADE_DELAY * 2 + id * 0.05} key={post.slug}>
-            <Link
-              className="group flex flex-col space-y-1 border-b border-border py-4"
-              href={`/blog/${post.slug}`}
-            >
-              <div className="w-full flex flex-col">
-                <p className="font-display font-bold transition-colors group-hover:text-brand">
-                  {post.metadata.title}
-                </p>
-                <p className="label h-6 text-muted-foreground">
-                  {post.metadata.publishedAt}
-                </p>
-              </div>
-            </Link>
-          </BlurFade>
-        ))}
-    </section>
+    <div className="space-y-12 pb-8 pt-2">
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Blog",
+            name: "Blog",
+            url: `${DATA.url}/blog`,
+            blogPost: posts.map((post) => ({
+              "@type": "BlogPosting",
+              headline: post.title,
+              url: `${DATA.url}/blog/${post.slug}`,
+            })),
+          }),
+        }}
+      />
+
+      <SectionHeading
+        as="h1"
+        title="Blog"
+        subtitle="Thoughts, tutorials, and insights on engineering and programming."
+      />
+
+      <BlogList posts={posts} />
+
+      <Quote seed="blog" />
+    </div>
   );
 }

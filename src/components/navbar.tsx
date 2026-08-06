@@ -1,52 +1,48 @@
-import { ModeToggle } from "@/components/mode-toggle";
-import { DATA } from "@/data/resume";
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-// Short mono codes for the social links in the header.
-const SOCIAL_CODE: Record<string, string> = {
-  GitHub: "GH",
-  LinkedIn: "IN",
-  X: "X",
-};
+import {
+  CommandPalette,
+  type PalettePost,
+} from "@/components/command-palette";
+import { ModeToggle } from "@/components/mode-toggle";
+import { NAV } from "@/lib/nav";
+import { cn } from "@/lib/utils";
 
-export default function Navbar() {
-  const socials = Object.entries(DATA.contact.social).filter(
-    ([, social]) => social.navbar
-  );
+export default function Navbar({ posts }: { posts: PalettePost[] }) {
+  const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background">
-      <div className="mx-auto flex h-14 max-w-3xl items-center justify-between px-6">
-        <Link
-          href="/"
-          className="font-display text-base font-extrabold tracking-tight"
-        >
-          {DATA.name}
-        </Link>
-
-        <nav className="label flex items-center gap-4 text-muted-foreground sm:gap-5">
-          {DATA.navbar.map((item) => (
+    // Not sticky, not blurred, no z-index — it scrolls away with the page,
+    // exactly as in the reference. It also inherits the layout's 640px column.
+    <header className="flex items-center justify-between gap-4 py-7">
+      <nav className="flex min-w-0 items-center gap-4 sm:gap-6">
+        {NAV.map((item) => {
+          const current =
+            item.href === "/"
+              ? pathname === "/"
+              : pathname.startsWith(item.href);
+          return (
             <Link
               key={item.href}
               href={item.href}
-              className="transition-colors hover:text-foreground"
+              aria-current={current ? "page" : undefined}
+              className={cn(
+                "transition-colors duration-200 ease-fluid hover:text-foreground",
+                current ? "text-foreground" : "text-muted-foreground"
+              )}
             >
               {item.label}
             </Link>
-          ))}
-          {socials.map(([name, social]) => (
-            <a
-              key={name}
-              href={social.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-colors hover:text-brand"
-            >
-              {SOCIAL_CODE[name] ?? name}
-            </a>
-          ))}
-          <ModeToggle />
-        </nav>
+          );
+        })}
+      </nav>
+
+      <div className="flex shrink-0 items-center gap-1">
+        <CommandPalette posts={posts} />
+        <ModeToggle />
       </div>
     </header>
   );

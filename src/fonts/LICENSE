@@ -1,0 +1,25 @@
+Satoshi
+Designed by Deni Anggara, published by the Indian Type Foundry (ITF).
+Obtained from https://www.fontshare.com/fonts/satoshi
+
+Licensed under the ITF Free Font License (FFL).
+https://www.fontshare.com/licenses/itf-ffl
+
+Summary of the FFL as it applies to this repository:
+
+  - Free for both personal and commercial use.
+  - May be embedded in and served from a website (self-hosted webfonts,
+    which is what the .woff2 files here are).
+  - May be redistributed as part of this project provided this notice is
+    retained and the fonts are not sold on their own.
+  - No modification of the font files themselves.
+
+Only the 400 / 500 / 700 upright weights are vendored here — the weights this
+site actually renders. Fontshare also publishes 300, 600, 800 and 900 plus
+matching italics; fetch them the same way if a future design needs them:
+
+  curl -s 'https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700' \
+    | grep -o "https\?://cdn\.fontshare\.com/[^']*\.woff2"
+
+(The bulk zip endpoint, https://api.fontshare.com/v2/fonts/download/satoshi,
+returns HTTP 500 — use the CSS API above instead.)

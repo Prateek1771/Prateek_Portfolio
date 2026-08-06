@@ -5,7 +5,11 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function formatDate(date: string) {
+/**
+ * `relative: false` gives the plain "July 28, 2026" the reference prints next
+ * to its calendar icon; the default keeps the "(2mo ago)" suffix.
+ */
+export function formatDate(date: string, { relative = true } = {}) {
   let currentDate = new Date().getTime();
   if (!date.includes("T")) {
     date = `${date}T00:00:00`;
@@ -19,6 +23,10 @@ export function formatDate(date: string) {
     day: "numeric",
     year: "numeric",
   });
+
+  if (!relative) {
+    return fullDate;
+  }
 
   if (daysAgo < 1) {
     return "Today";

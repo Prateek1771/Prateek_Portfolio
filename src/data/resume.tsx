@@ -1,5 +1,8 @@
 import { Icons } from "@/components/icons";
-import { HomeIcon, NotebookIcon } from "lucide-react";
+
+// Single source for the address so contact.email and the mailto: URL can't
+// drift apart again (they were 5@ and 6@).
+const EMAIL = "hitliprateek5@gmail.com";
 
 export const DATA = {
   name: "Prateek Hitli",
@@ -13,6 +16,54 @@ export const DATA = {
     "I’m an [AI Engineer]() and [Full Stack Developer]() with a [Bachelor’s degree in Artificial Intelligence and Machine Learning](). I build scalable frontend and backend systems using [React.js](), [FastAPI](), and [PostgreSQL](), and have hands-on experience developing AI-powered applications and automation workflows. I integrate LLM frameworks like [LangChain]() and [LangGraph]() to build intelligent decision systems and agentic workflows. I love turning complex problems into impactful, production-ready solutions. Get my resume [Click Here!](/Prateek.pdf)",
 
   avatarUrl: "/me1.png",
+
+  // <Quote /> picks one of these at the foot of every page.
+  quotes: [
+    {
+      text: "A lesson without pain is meaningless.",
+      author: "Edward Elric, Fullmetal Alchemist: Brotherhood",
+    },
+    {
+      text: "If you don't take risks, you can't create a future.",
+      author: "Monkey D. Luffy, One Piece",
+    },
+    {
+      text: "Fear is not evil. It tells you what your weakness is.",
+      author: "Gildarts Clive, Fairy Tail",
+    },
+    {
+      text: "Being weak is nothing to be ashamed of. Staying weak is.",
+      author: "Fuegoleon Vermillion, Black Clover",
+    },
+    {
+      text: "Whatever you lose, you'll find it again. But what you throw away you'll never get back.",
+      author: "Himura Kenshin, Rurouni Kenshin",
+    },
+    {
+      text: "The world isn't perfect. But it's there for us, doing the best it can.",
+      author: "Roy Mustang, Fullmetal Alchemist: Brotherhood",
+    },
+    {
+      text: "You're not always going to be the strongest or the fastest, so be the smartest.",
+      author: "Odysseus, The Odyssey (2026)",
+    },
+    {
+      text: "Don't look for gods in men; you'll always be disappointed.",
+      author: "The Odyssey (2026)",
+    },
+    {
+      text: "Sometimes Spider-Man has to do the hard thing, even if it breaks Peter Parker's heart.",
+      author: "Spider-Man: Brand New Day (2026)",
+    },
+    {
+      text: "Hey, you guys are the professionals, I'm just a volunteer.",
+      author: "Spider-Man, Spider-Man: Brand New Day (2026)",
+    },
+    {
+      text: "Whatever you are, be a good one.",
+      author: "Abraham Lincoln",
+    },
+  ],
 
   skills: [
     "HTML",
@@ -43,13 +94,9 @@ export const DATA = {
     "LangGraph",
     "AI Agents"
   ],
-  navbar: [
-    { href: "/", icon: HomeIcon, label: "Home" },
-    // { href: "/blog", icon: NotebookIcon, label: "Blog" },
-
-  ],
+  // Nav lives in src/lib/nav.ts, shared by the navbar pill and the footer.
   contact: {
-    email: "hitliprateek5@gmail.com",
+    email: EMAIL,
     tel: "91+9606861693",
     social: {
       GitHub: {
@@ -76,7 +123,7 @@ export const DATA = {
      
       email: {
         name: "Send Email",
-        url: "mailto:hitliprateek6@gmail.com",
+        url: `mailto:${EMAIL}`,
         icon: Icons.email,
 
         navbar: false,
@@ -94,8 +141,26 @@ export const DATA = {
       logoUrl: "/digibull_ai_logo.jpeg",
       start: "Sep 2025",
       end: "Mar 2026",
+      // `description` stays as prose for JSON-LD and meta descriptions;
+      // `highlights` is the same content split for the /work bullet list.
       description:
         "Developed production-grade backend APIs using Python and FastAPI for manufacturing applications, implementing RESTful endpoints with proper error handling and request validation. Designed and optimized PostgreSQL database queries for production tracking system, implementing efficient indexing strategies and query optimization to handle concurrent requests. Built a multi-agent testing framework that automated testing workflows through an Agentic AI testing platform. Participated in code reviews and testing cycles, contributing to code quality improvements and ensuring adherence to best practices.",
+      technologies: [
+        "Python",
+        "FastAPI",
+        "PostgreSQL",
+        "LangChain",
+        "LangGraph",
+        "Docker",
+        "Git",
+        "Postman",
+      ],
+      highlights: [
+        "Developed production-grade backend APIs using Python and FastAPI for manufacturing applications, implementing RESTful endpoints with proper error handling and request validation.",
+        "Designed and optimized PostgreSQL database queries for a production tracking system, implementing efficient indexing strategies to handle concurrent requests.",
+        "Built a multi-agent testing framework that automated testing workflows through an Agentic AI testing platform.",
+        "Participated in code reviews and testing cycles, contributing to code quality improvements and ensuring adherence to best practices.",
+      ],
     },
     {
       company: "Unified Mentor",
@@ -108,6 +173,20 @@ export const DATA = {
       end: "Feb 2025",
       description:
         "Developed a full-stack e-commerce platform backend with Next.js API routes, reducing page load by 40% through server-side rendering optimization, code-splitting, and efficient API design patterns. Designed RESTful API architecture for product catalog, authentication, and order management with PostgreSQL, ensuring data consistency and implementing proper error handling for production readiness. Collaborated on code reviews focusing on API security, performance optimization, and maintainable code patterns in a shared codebase environment.",
+      technologies: [
+        "Next.js",
+        "TypeScript",
+        "React",
+        "Tailwind CSS",
+        "PostgreSQL",
+        "Node.js",
+        "Git",
+      ],
+      highlights: [
+        "Developed a full-stack e-commerce platform backend with Next.js API routes, reducing page load by 40% through server-side rendering optimization, code-splitting, and efficient API design patterns.",
+        "Designed RESTful API architecture for product catalog, authentication, and order management with PostgreSQL, ensuring data consistency and proper error handling for production readiness.",
+        "Collaborated on code reviews focusing on API security, performance optimization, and maintainable code patterns in a shared codebase.",
+      ],
     },
     {
       company: "Synkerr",
@@ -120,6 +199,20 @@ export const DATA = {
       end: "Jun 2024",
       description:
         "Developed modern, responsive websites using HTML, CSS, JavaScript, React JS, Aceternity UI, and Shadcn UI, enhancing web aesthetics and functionality. Boosted company visibility by collaborating on web development projects, leading to a 20% increase in online traffic. Improved user experience through focused UI/UX design enhancements, resulting in a 15% increase in user engagement.",
+      technologies: [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "React",
+        "Tailwind CSS",
+        "Shadcn UI",
+        "Figma",
+      ],
+      highlights: [
+        "Developed modern, responsive websites using HTML, CSS, JavaScript, React JS, Aceternity UI, and Shadcn UI, enhancing web aesthetics and functionality.",
+        "Boosted company visibility by collaborating on web development projects, leading to a 20% increase in online traffic.",
+        "Improved user experience through focused UI/UX design enhancements, resulting in a 15% increase in user engagement.",
+      ],
     },
   ],
 
@@ -145,6 +238,38 @@ export const DATA = {
   ],
 
   projects: [
+    {
+      title: "AZ-CLAW",
+      href: "https://github.com/Prateek1771/az-claw",
+      dates: "",
+      active: true,
+      description:
+        "A terminal-first AI coding agent that also runs from Telegram. Four modes - Agent, Plan, Ask and Second Brain - over one model factory that falls back from Groq to OpenRouter mid-call. Every file mutation is staged in memory and applied only after you approve a diff.",
+      technologies: [
+        "Bun",
+        "TypeScript",
+        "Vercel AI SDK",
+        "Groq",
+        "OpenRouter",
+        "InsForge (pgvector)",
+        "Telegraf",
+        "Zod",
+      ],
+      links: [
+        {
+          type: "Source",
+          href: "https://github.com/Prateek1771/az-claw",
+          icon: <Icons.github className="size-3" />,
+        },
+        {
+          type: "Blog",
+          href: "/blog/az-claw-staged-writes",
+          icon: <Icons.globe className="size-3" />,
+        },
+      ],
+      image: "",
+      video: "",
+    },
     {
       title: "GuardRAG",
       href: "https://github.com/Prateek1771/GuardRAG",
@@ -181,7 +306,7 @@ export const DATA = {
       youtubeId: "GpaCrQy-3Rg",
     },
     {
-      title: "Hot Wheels x Pantone — Silver Series",
+      title: "Hot Wheels x Pantone - Silver Series",
       href: "https://hotwheels-pantone.vercel.app",
       dates: "",
       active: true,
@@ -232,7 +357,7 @@ export const DATA = {
         },
         {
           type: "Blog",
-          href: "https://dev.to/prateek_hitli_5a7d19f1c87/i-got-distracted-watching-a-golang-tutorial-so-i-built-an-project-that-wont-let-you-843",
+          href: "/blog/lingolearn-distraction-proof-learning",
           icon: <Icons.globe className="size-3" />,
         },
       ],
@@ -272,14 +397,14 @@ export const DATA = {
       dates: "",
       active: true,
       description:
-        "A staff-operated in-store platform for Indian wedding fashion boutiques — customer onboarding, AI-powered inventory and outfit matching, virtual try-on, billing, and sales analytics with role-based access for stylists, cashiers, and owners.",
+        "A staff-operated in-store platform for Indian wedding fashion boutiques - customer onboarding, AI-powered inventory and outfit matching, virtual try-on, billing, and sales analytics with role-based access for stylists, cashiers, and owners.",
       technologies: [
         "Next.js 16",
         "React 19",
         "Tailwind CSS 4",
         "InsForge (Postgres)",
         "Groq Vision",
-        "API4.AI",
+        "OpenAI gpt-image-2",
         "PostHog",
       ],
       links: [
@@ -293,6 +418,11 @@ export const DATA = {
           href: "https://github.com/Prateek1771/Vivah_styles",
           icon: <Icons.github className="size-3" />,
         },
+        {
+          type: "Blog",
+          href: "/blog/vivah-styles-scoring-engine",
+          icon: <Icons.globe className="size-3" />,
+        },
       ],
       image: "",
       video: "",
@@ -305,7 +435,7 @@ export const DATA = {
       dates: "Feb - Mar 2026",
       location: "Online",
       description:
-        "Built LingoLearn — an AI-powered platform that transforms passive YouTube watching into active, quiz-driven education. It pauses videos at strategic moments to test comprehension, supports 130+ languages via Lingo.dev SDK, and generates certificates on completion.",
+        "Built LingoLearn - an AI-powered platform that transforms passive YouTube watching into active, quiz-driven education. It pauses videos at strategic moments to test comprehension, supports 130+ languages via Lingo.dev SDK, and generates certificates on completion.",
       image: "/lingodev.avif",
       mlh: "/lingodev.avif",
       links: [

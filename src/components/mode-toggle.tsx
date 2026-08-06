@@ -1,22 +1,27 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
+import { MoonIcon, SunIcon } from "lucide-react";
 import { useTheme } from "next-themes";
 
+import { Button } from "@/components/ui/button";
+
 export function ModeToggle() {
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
 
   return (
     <Button
       variant="ghost"
-      type="button"
       size="icon"
-      className="px-2"
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      aria-label="Toggle theme"
+      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
     >
-      <SunIcon className="h-[1.1rem] w-[1.1rem] text-foreground dark:hidden" />
-      <MoonIcon className="hidden h-[1.1rem] w-[1.1rem] text-foreground dark:block" />
+      {/*
+        Both icons render and CSS picks one, so the server and client markup
+        match. Branching on resolvedTheme here would hydrate-mismatch: it is
+        undefined until next-themes reads localStorage on the client.
+      */}
+      <SunIcon className="size-[18px] dark:hidden" strokeWidth={1.5} />
+      <MoonIcon className="hidden size-[18px] dark:block" strokeWidth={1.5} />
     </Button>
   );
 }
