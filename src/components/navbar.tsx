@@ -15,7 +15,7 @@ export default function Navbar({ posts }: { posts: PalettePost[] }) {
   const pathname = usePathname();
 
   return (
-    // Not sticky, not blurred, no z-index — it scrolls away with the page,
+    // Not sticky, not blurred, no z-index - it scrolls away with the page,
     // exactly as in the reference. It also inherits the layout's 640px column.
     <header className="flex items-center justify-between gap-4 py-7">
       <nav className="flex min-w-0 items-center gap-4 sm:gap-6">

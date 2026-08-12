@@ -40,7 +40,7 @@ const BlurFade = ({
 
   const defaultVariants: Variants = {
     hidden: { y: yOffset, opacity: 0, filter: `blur(${blur})` },
-    // Resolves to translate-y-0 — the old `-yOffset` left every element
+    // Resolves to translate-y-0 - the old `-yOffset` left every element
     // permanently offset above its own layout position.
     visible: { y: 0, opacity: 1, filter: `blur(0px)` },
   };

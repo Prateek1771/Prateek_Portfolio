@@ -11,7 +11,7 @@ const REPO = process.env.NEXT_PUBLIC_UTTERANCES_REPO;
  * utteranc.es comment thread, backed by GitHub issues.
  *
  * Renders nothing unless NEXT_PUBLIC_UTTERANCES_REPO is set to a public
- * `owner/repo` that has the utterances GitHub App installed — a wrong slug
+ * `owner/repo` that has the utterances GitHub App installed - a wrong slug
  * renders a permanently broken widget, so an unset var is treated as "off"
  * rather than guessed.
  */
@@ -23,7 +23,7 @@ export function Comments() {
     const host = ref.current;
     if (!REPO || !host || !resolvedTheme) return;
 
-    // utterances has no imperative theme API — swapping themes means tearing
+    // utterances has no imperative theme API - swapping themes means tearing
     // the iframe down and re-injecting the script.
     host.replaceChildren();
 
@@ -47,7 +47,7 @@ export function Comments() {
 
   return (
     <>
-      {/* The rule belongs to the section, not the page — otherwise the page
+      {/* The rule belongs to the section, not the page - otherwise the page
           renders two adjacent separators whenever comments are switched off. */}
       <Separator />
       <section className="space-y-4">

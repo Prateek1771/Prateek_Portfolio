@@ -12,7 +12,7 @@ import { NekoScript } from "@/components/neko";
 import "./globals.css";
 
 // Satoshi is the reference's typeface. Self-hosted from Fontshare (see
-// src/fonts/LICENSE) — it isn't on Google Fonts, and there is no variable axis,
+// src/fonts/LICENSE) - it isn't on Google Fonts, and there is no variable axis,
 // so these are three static faces covering every weight the design uses.
 const fontSans = localFont({
   variable: "--font-sans",
@@ -131,7 +131,7 @@ export default async function RootLayout({
           enableSystem
         >
           <TooltipProvider delayDuration={200}>
-            {/* One measure for every route, header and footer included — the
+            {/* One measure for every route, header and footer included - the
                 reference never varies it. 43rem minus px-6 either side lands
                 the content box on exactly 640px, matching the capture. */}
             <div className="mx-auto w-full max-w-[43rem] px-6">

@@ -34,7 +34,7 @@ export function SectionHeading({
 
 /**
  * The work / education / hackathon row: title and subtitle left, dates and
- * place right-aligned. Stacks below `sm` — squeezing two right-aligned lines
+ * place right-aligned. Stacks below `sm` - squeezing two right-aligned lines
  * next to a title at 342px reads as a broken table.
  */
 export function EntryRow({
@@ -90,7 +90,7 @@ export function EntryRow({
 
 /**
  * The blog / project row: text block left, "Read more →" vertically centred on
- * the right. The arrow nudges on hover — the only motion in the reference.
+ * the right. The arrow nudges on hover - the only motion in the reference.
  */
 export function LinkRow({
   href,
@@ -181,7 +181,7 @@ export function LinkCard({
 
 /**
  * The Books / Movies row: 2:3 cover on the left, EntryRow's text block beside
- * it. One component for both pages — a book jacket and a film poster are the
+ * it. One component for both pages - a book jacket and a film poster are the
  * same shape, so a second variant would be a copy with the word swapped.
  */
 export function PosterRow({
@@ -206,7 +206,7 @@ export function PosterRow({
           width={48}
           height={72}
           // Jackets aren't all exactly 2:3, and next/image's intrinsic ratio
-          // wins over the width/height attrs — without the pinned box the rows
+          // wins over the width/height attrs - without the pinned box the rows
           // land 71-77px tall and the text baselines stop lining up.
           className="h-[72px] w-[48px] shrink-0 rounded-md border border-border object-cover"
         />
@@ -250,7 +250,7 @@ export function PosterRow({
 
 /**
  * A single "Technologies & Tools" tile. Renders the brand logo when Simple
- * Icons has one, otherwise the label itself in the same tile — so an unmatched
+ * Icons has one, otherwise the label itself in the same tile - so an unmatched
  * technology is still legible rather than a blank square.
  *
  * `hex: null` from techIcon() means the brand colour is near-black or
@@ -304,7 +304,7 @@ export function TechTiles({ items }: { items: readonly string[] }) {
   );
 }
 
-/** The "What I've done" list — square markers, exactly as in the reference. */
+/** The "What I've done" list - square markers, exactly as in the reference. */
 export function Bullets({ items }: { items: readonly string[] }) {
   return (
     <ul className="space-y-1.5">

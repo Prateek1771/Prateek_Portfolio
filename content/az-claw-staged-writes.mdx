@@ -40,7 +40,7 @@ modifyFile(rel: string, content: string): string {
 
 `createFile` is the same shape. `deleteFile` drops the key from the overlay and adds it to `deleted`. Nothing is written; the tool result the model reads back is the literal string `Staged update: …`, so the agent knows the change is pending rather than believing it landed.
 
-The part that makes this actually work — rather than just making the agent blind — is the read path:
+The part that makes this actually work - rather than just making the agent blind - is the read path:
 
 ```ts
 getEffectiveText(rel: string): string | undefined {
@@ -53,7 +53,7 @@ getEffectiveText(rel: string): string | undefined {
 }
 ```
 
-Deleted, then overlay, then disk. So the agent can create `lib/parser.ts`, read it back two tool calls later, modify it, and delete a file it never really had — all against a filesystem that hasn't changed. It's a copy-on-write view scoped to one run, and it's about fifteen lines.
+Deleted, then overlay, then disk. So the agent can create `lib/parser.ts`, read it back two tool calls later, modify it, and delete a file it never really had - all against a filesystem that hasn't changed. It's a copy-on-write view scoped to one run, and it's about fifteen lines.
 
 ## Approval is the only path to disk
 
@@ -73,7 +73,7 @@ flowchart TD
   I -- "reject" --> K["Discarded<br/>never persisted"]
 ```
 
-When the run finishes, `approval.ts` walks the pending actions, `diff-view.ts` renders each as a unified diff (the `diff` package), and you answer approve, reject, or approve-all. Rejected actions are dropped — not stashed, not applied later.
+When the run finishes, `approval.ts` walks the pending actions, `diff-view.ts` renders each as a unified diff (the `diff` package), and you answer approve, reject, or approve-all. Rejected actions are dropped - not stashed, not applied later.
 
 The same flow exists on your phone. `modes/telegram/approval-session.ts` mirrors it with Telegram inline buttons, keeping a per-chat session while the agent runs.
 
@@ -83,7 +83,7 @@ The same flow exists on your phone. `modes/telegram/approval-session.ts` mirrors
 |---|---|
 | **Agent** | Works the codebase with tools; every mutation staged |
 | **Plan** | Read-only research (plus Firecrawl web search/scrape), then a step-by-step plan you pick from via checkbox menu or inline buttons |
-| **Ask** | Read-only Q&A over the codebase; can save the answer as markdown — routed through the same approval flow |
+| **Ask** | Read-only Q&A over the codebase; can save the answer as markdown - routed through the same approval flow |
 | **Second Brain** | Dump text, URLs or images; ask questions later |
 
 The Ask detail is the one I'd point at. "Save this answer to a file" is a write, so it does not get a shortcut around the approval step just because it's a nicer kind of write.
@@ -101,7 +101,7 @@ From Telegram, the same four:
 
 ## Fallback that lives in the model, not the call site
 
-Groq is the primary LLM — fast, generous free tier — and its free tier does what free tiers do. Rather than wrapping every call in a retry, `ai/ai.config.ts` wraps the *model object* once:
+Groq is the primary LLM - fast, generous free tier - and its free tier does what free tiers do. Rather than wrapping every call in a retry, `ai/ai.config.ts` wraps the *model object* once:
 
 ```ts
 function withFallback(primary: ModelObject, fallback: () => ModelObject): ModelObject {
@@ -125,7 +125,7 @@ function withFallback(primary: ModelObject, fallback: () => ModelObject): ModelO
 }
 ```
 
-A `Proxy` intercepting exactly two properties. `Reflect.get` passes everything else — `provider`, `modelId`, `specificationVersion`, whatever the AI SDK asks for next — straight through, so this doesn't have to track the provider interface as it changes.
+A `Proxy` intercepting exactly two properties. `Reflect.get` passes everything else - `provider`, `modelId`, `specificationVersion`, whatever the AI SDK asks for next - straight through, so this doesn't have to track the provider interface as it changes.
 
 Every mode calls `getAgentModel()` and gets the fallback for free: agent loop, planner, Q&A, brain enrichment. Rate limit mid-stream, the warning prints, the identical call re-issues on OpenRouter, and the run continues. No mode contains the word "retry".
 
@@ -146,7 +146,7 @@ dump ──► enrich ──► embed ──► store ──► match_notes ─�
 - `embeddings.ts` uses Gemini's free 1536-dim embeddings, with OpenRouter as fallback
 - `store.ts` writes to InsForge (Postgres + pgvector, HNSW index) and queries a `match_notes()` cosine-similarity RPC
 
-Answers cite the stored notes they came from. That's the guardrail — a note store that invents facts is worse than no note store, because you'd trust it.
+Answers cite the stored notes they came from. That's the guardrail - a note store that invents facts is worse than no note store, because you'd trust it.
 
 ![AZ-CLAW at a glance](/az-claw/infographic.png)
 
@@ -162,11 +162,11 @@ cp .env.example .env
 bun index.ts wakeup
 ```
 
-`wakeup` prints a figlet banner and asks CLI or Telegram. One manual step beyond the keys: apply `modes/brain/schema.sql` to your InsForge database once — it creates the `notes` table, the `match_notes()` function and the HNSW index. Then `bun modes/brain/smoke.ts` for a round-trip check.
+`wakeup` prints a figlet banner and asks CLI or Telegram. One manual step beyond the keys: apply `modes/brain/schema.sql` to your InsForge database once - it creates the `notes` table, the `match_notes()` function and the HNSW index. Then `bun modes/brain/smoke.ts` for a round-trip check.
 
 Keys: `GROQ_API_KEY` and `OPENROUTER_API_KEY` (+ `OPENROUTER_DEFAULT_MODEL`) are required; `GEMINI_API_KEY` and the InsForge pair are needed for the brain; the Telegram pair for the bot; `FIRECRAWL_API_KEY` is optional and unlocks web search in Plan and Ask.
 
-No build step — Bun runs the TypeScript directly.
+No build step - Bun runs the TypeScript directly.
 
 ## It's checked in
 

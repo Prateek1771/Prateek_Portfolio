@@ -3,7 +3,7 @@
  * logos.
  *
  * Simple Icons is CC0 SVG path data with no React wrapper, resolved here at
- * build time — the rendered markup is an inline <svg>, so nothing about this
+ * build time - the rendered markup is an inline <svg>, so nothing about this
  * module reaches the client bundle.
  *
  * Coverage is deliberately partial. Simple Icons removes brands whose logo
@@ -67,7 +67,7 @@ type SimpleIcon = { title: string; hex: string; path: string };
 /**
  * Keys are already normalised by `normalise()` below: lowercased, version
  * suffix stripped, parenthetical stripped. Add aliases here rather than
- * widening the normaliser — an alias is obvious, a clever regex is not.
+ * widening the normaliser - an alias is obvious, a clever regex is not.
  */
 const ICONS: Record<string, SimpleIcon> = {
   html: siHtml5,
@@ -94,7 +94,7 @@ const ICONS: Record<string, SimpleIcon> = {
   mongodb: siMongodb,
   postgresql: siPostgresql,
   postgres: siPostgresql,
-  // The existing typo in resume.tsx — aliased rather than silently unmatched.
+  // The existing typo in resume.tsx - aliased rather than silently unmatched.
   postgreesql: siPostgresql,
   sqlite: siSqlite,
   redis: siRedis,

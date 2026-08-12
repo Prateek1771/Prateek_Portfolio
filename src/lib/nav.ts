@@ -9,7 +9,7 @@ export const NAV = [
   { href: "/resume", label: "Resume" },
 ];
 
-// The footer's two wrapped rows. Order matters — it is what produces the
+// The footer's two wrapped rows. Order matters - it is what produces the
 // 6-then-6 wrap at the 640px measure.
 export const FOOTER_NAV = [
   { href: "/", label: "Home" },
@@ -19,6 +19,7 @@ export const FOOTER_NAV = [
   { href: "/projects", label: "Projects" },
   { href: "/gears", label: "Gears" },
   { href: "/setup", label: "Setup" },
+  { href: "/collections", label: "Collections" },
   { href: "/books", label: "Books" },
   { href: "/movies", label: "Movies" },
   { href: "/skills", label: "Skills" },

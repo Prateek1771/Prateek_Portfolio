@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
-// Flat and quiet. No shadows, no scale, no pill — the reference buttons are a
+// Flat and quiet. No shadows, no scale, no pill - the reference buttons are a
 // rounded rectangle with a hairline and a one-step-lighter fill.
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-colors duration-200 ease-fluid focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50",

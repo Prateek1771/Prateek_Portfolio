@@ -12,7 +12,7 @@ import { DATA } from "@/data/resume";
  * Deterministic pick from DATA.quotes. Math.random() is out twice over:
  * react-hooks/purity rejects it inside the component, and hoisting it to module
  * scope gave every prerendered route the same quote. Hashing the seed keeps the
- * pages static and gives each one a different line — callers pass their route.
+ * pages static and gives each one a different line - callers pass their route.
  */
 export function Quote({ seed = "" }: { seed?: string }) {
   let hash = 0;

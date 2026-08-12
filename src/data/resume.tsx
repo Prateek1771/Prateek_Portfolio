@@ -140,7 +140,7 @@ export const DATA = {
       title: "Junior Developer",
       logoUrl: "/digibull_ai_logo.jpeg",
       start: "Sep 2025",
-      end: "Mar 2026",
+      end: undefined,
       // `description` stays as prose for JSON-LD and meta descriptions;
       // `highlights` is the same content split for the /work bullet list.
       description:

@@ -44,6 +44,19 @@ export type Movie = {
   image?: string;
 };
 
+export type CollectionItem = {
+  name: string;
+  description: string;
+  /** Array of image paths in public/collections and public/lego-supra. */
+  images: string[];
+  href?: string;
+};
+
+export type CollectionGroup = {
+  title: string;
+  items: CollectionItem[];
+};
+
 /**
  * Seeded from the tooling already listed in DATA.skills, so the page is real
  * rather than a placeholder. Extend or replace freely.
@@ -108,7 +121,7 @@ export const GEARS: GearGroup[] = [
   },
 ];
 
-/** Section shells — add the actual config and extension lists here. */
+/** Section shells - add the actual config and extension lists here. */
 export const SETUP: SetupSection[] = [
   { title: "Editor", items: [] },
   { title: "Extensions", items: [] },
@@ -148,6 +161,13 @@ export const BOOKS: Book[] = [
 
 export const MOVIES: Movie[] = [
   {
+    title: "DC",
+    year: "2026",
+    note: "The BGM used in the movie is so awesome. Watched 8 Aug 2026.",
+    href: "https://www.imdb.com/title/tt37501035/",
+    image: "/covers/dc.jpg",
+  },
+  {
     title: "Spider-Man: Brand New Day",
     year: "2026",
     note: "Destin Daniel Cretton. Watched 2 Aug 2026.",
@@ -160,5 +180,32 @@ export const MOVIES: Movie[] = [
     note: "Nolan's Homer, shot end to end on IMAX film. Watched 18 Jul 2026.",
     href: "https://www.themoviedb.org/movie/1368337-the-odyssey",
     image: "/covers/the-odyssey.jpg",
+  },
+];
+
+export const COLLECTIONS: CollectionGroup[] = [
+  {
+    title: "Lego Builds",
+    items: [
+      {
+        name: "LEGO Speed Champions – Fast & Furious Toyota Supra Mk4",
+        description:
+          "A 319-piece build capturing the iconic orange Supra from Fast & Furious. Detailed minifigure included.",
+        images: [
+          "/collections/lego-supra-hero.png",
+          "/lego-supra/hero.png",
+          "/lego-supra/build-1.png",
+          "/lego-supra/build-2.png",
+          "/lego-supra/candid-1.jpeg",
+          "/lego-supra/candid-1b.jpeg",
+          "/lego-supra/candid-2.jpeg",
+          "/lego-supra/candid-2b.jpeg",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Hot Wheels",
+    items: [],
   },
 ];

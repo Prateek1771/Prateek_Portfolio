@@ -19,7 +19,7 @@ export function ShareButton({ title }: { title: string }) {
         await navigator.share({ title, url });
         return;
       } catch {
-        // The user dismissed the sheet — fall through to copying.
+        // The user dismissed the sheet - fall through to copying.
       }
     }
     await navigator.clipboard?.writeText(url);

@@ -92,7 +92,7 @@ export function CommandPalette({ posts }: { posts: PalettePost[] }) {
           className="flex items-center gap-2 rounded-full bg-secondary p-2 text-muted-foreground transition-colors duration-200 ease-fluid hover:text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring sm:py-1.5 sm:pl-3 sm:pr-2"
         >
           <SearchIcon className="size-4" strokeWidth={1.5} />
-          {/* The keycaps are the first thing to go below sm — four nav links
+          {/* The keycaps are the first thing to go below sm - four nav links
               plus a full-width search pill plus the toggle do not fit in 342px,
               and the overlap lands on "Resume". */}
           <span className="hidden items-center gap-1 sm:flex">

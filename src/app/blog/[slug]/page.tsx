@@ -142,7 +142,7 @@ export default async function Blog({
       )}
 
       <div className="space-y-3">
-        {/* The one serif in the design — Instrument Serif, per the reference. */}
+        {/* The one serif in the design - Instrument Serif, per the reference. */}
         <h1 className="serif text-4xl md:text-5xl">{post.metadata.title}</h1>
         {post.metadata.summary && (
           <p className="text-muted-foreground">{post.metadata.summary}</p>

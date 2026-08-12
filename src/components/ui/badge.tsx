@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
 
-// Reference badges are sentence-case, not uppercase-tracked — the tag pills
+// Reference badges are sentence-case, not uppercase-tracked - the tag pills
 // read "Engineering", not "E N G I N E E R I N G".
 const badgeVariants = cva(
   "inline-flex items-center gap-1.5 text-xs font-medium transition-colors duration-200 ease-fluid",
@@ -16,7 +16,7 @@ const badgeVariants = cva(
         // Filter chips in their resting state.
         outline:
           "rounded-full border border-border bg-card px-3 py-1.5 text-muted-foreground hover:text-foreground",
-        // The selected filter chip — inverted, as captured.
+        // The selected filter chip - inverted, as captured.
         active:
           "rounded-full bg-foreground px-3 py-1.5 font-semibold text-background",
         // The only chromatic element in the design: "● Working".

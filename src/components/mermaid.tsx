@@ -20,7 +20,7 @@ export function Mermaid() {
     if (nodes.length === 0) return;
 
     // Mermaid bakes the palette into the SVG and stamps data-processed, so a
-    // theme toggle can't just re-run it — the source has to be stashed on the
+    // theme toggle can't just re-run it - the source has to be stashed on the
     // first pass and put back before each re-render.
     for (const node of nodes) {
       node.dataset.src ??= node.textContent ?? "";

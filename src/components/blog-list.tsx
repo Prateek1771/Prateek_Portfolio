@@ -6,7 +6,7 @@ import { useMemo, useState } from "react";
 import { LinkRow } from "@/components/rows";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
-// Mirrors data/blog.ts's slugifyTag — duplicated rather than imported because
+// Mirrors data/blog.ts's slugifyTag - duplicated rather than imported because
 // that module pulls in `fs`, which can't ship to the client bundle.
 function slugifyTag(tag: string) {
   return tag
@@ -65,23 +65,6 @@ export function BlogList({ posts }: { posts: BlogListItem[] }) {
             </ToggleGroupItem>
           ))}
         </ToggleGroup>
-      )}
-
-      {/* Real, crawlable per-tag URLs — the toggle group above is client-side
-          state and invisible to search engines. */}
-      {tags.length > 0 && (
-        <div className="flex flex-wrap gap-x-3 gap-y-1 text-sm text-muted-foreground">
-          <span>Browse by tag:</span>
-          {tags.map(([name]) => (
-            <Link
-              key={name}
-              href={`/blog/tag/${slugifyTag(name)}`}
-              className="underline-offset-2 hover:underline"
-            >
-              {name}
-            </Link>
-          ))}
-        </div>
       )}
 
       <div className="space-y-6">

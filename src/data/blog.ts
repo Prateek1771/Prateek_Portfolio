@@ -36,7 +36,7 @@ export type Post = {
  * refuses to parse it.
  *
  * ponytail: top-level fences only. A mermaid block nested inside a list item or
- * blockquote stays a code block — no post needs that, and it saves pulling in a
+ * blockquote stays a code block - no post needs that, and it saves pulling in a
  * tree-walk dependency for a one-level loop.
  */
 function remarkMermaid() {

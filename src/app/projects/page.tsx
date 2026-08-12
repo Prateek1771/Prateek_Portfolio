@@ -30,7 +30,7 @@ export default function ProjectsPage() {
           >
             {project.links.length > 0 && (
               // Nested inside a LinkRow's own <Link>, so these are spans with
-              // click handlers' worth of styling only — the row navigates.
+              // click handlers' worth of styling only - the row navigates.
               <p className="flex flex-wrap items-center gap-3 pt-1 text-sm text-muted-foreground">
                 {project.links.map((link) => (
                   <span key={link.type} className="flex items-center gap-1.5">

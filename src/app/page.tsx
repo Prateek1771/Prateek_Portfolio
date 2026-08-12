@@ -25,7 +25,7 @@ export default async function Page() {
     .slice(0, 3);
 
   return (
-    // One flat column, uniform 64px section rhythm — no grid, no full-height
+    // One flat column, uniform 64px section rhythm - no grid, no full-height
     // sections, no cards around the content itself.
     <div className="space-y-16 pb-8 pt-2">
       <script

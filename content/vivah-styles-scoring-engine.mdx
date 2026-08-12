@@ -43,9 +43,9 @@ Two details in there cost real time to arrive at.
 
 **`proxy.ts`, not `middleware.ts`.** That's Next 16's convention for the same file, and it's the role gate for every route in the app.
 
-**One `app/(app)/` group, not three.** The obvious layout for a three-role app is `(stylist)`, `(cashier)`, `(admin)` — and Next forbids it, because two route groups can't resolve to the same URL path. So there's a single group with role-aware navigation, and role checks live in the gate *and* in every route handler and server action via `requireRole()`. Two enforcement points, deliberately: the gate is a convenience, the handler check is the actual security boundary.
+**One `app/(app)/` group, not three.** The obvious layout for a three-role app is `(stylist)`, `(cashier)`, `(admin)` - and Next forbids it, because two route groups can't resolve to the same URL path. So there's a single group with role-aware navigation, and role checks live in the gate *and* in every route handler and server action via `requireRole()`. Two enforcement points, deliberately: the gate is a convenience, the handler check is the actual security boundary.
 
-Sessions are HMAC-signed cookies with bcrypt password hashing — no third-party auth library, no component library, no state manager. That's by design in this codebase.
+Sessions are HMAC-signed cookies with bcrypt password hashing - no third-party auth library, no component library, no state manager. That's by design in this codebase.
 
 ## Three roles, three home pages
 
@@ -59,7 +59,7 @@ Each role lands on its own page at login: Stylist → `/onboarding`, Cashier →
 
 ---
 
-## Where the AI is — and where it deliberately isn't
+## Where the AI is - and where it deliberately isn't
 
 ```mermaid
 flowchart LR
@@ -76,13 +76,13 @@ flowchart LR
 
 Adding a dress used to be a data-entry chore, so it's now a photo drop: Groq Vision fills in name, category, gender, colours, occasion tags, fabric and a suggested price. Everything it writes is editable, because a vision model guessing "mustard" at "gold" is a one-tap fix and an argument-free one.
 
-Try-on is `gpt-image-2` through `/v1/images/edits`, called with plain `fetch` — no OpenAI SDK for one endpoint. Customer photo goes in with consent, the preview lands in a per-session gallery, and it works for walk-ins with no session at all.
+Try-on is `gpt-image-2` through `/v1/images/edits`, called with plain `fetch` - no OpenAI SDK for one endpoint. Customer photo goes in with consent, the preview lands in a per-session gallery, and it works for walk-ins with no session at all.
 
 And then the recommendations, which everyone assumes are the AI part, use **no model whatsoever**.
 
 ## The scoring engine
 
-`lib/scoring/` is pure: no DB, no fetch, no randomness. Same inputs, same outputs, every time — which is why the repo can ship `*_check.mjs` self-checks next to it and why a stylist can be told *why* something was suggested.
+`lib/scoring/` is pure: no DB, no fetch, no randomness. Same inputs, same outputs, every time - which is why the repo can ship `*_check.mjs` self-checks next to it and why a stylist can be told *why* something was suggested.
 
 Hard filters first, and they're unglamorous on purpose:
 
@@ -102,7 +102,7 @@ function passesHardFilters(session: SessionPreferences, item: InventoryItem): bo
 }
 ```
 
-Whatever survives gets scored on occasion, budget, colour and availability. Everything at 60 or above is returned — no top-N cap — each with a match badge and reason chips. In a shop, "here are the eleven things that fit" beats "here are the best three" every time, because the customer is standing right there and will reject four of them on sight.
+Whatever survives gets scored on occasion, budget, colour and availability. Everything at 60 or above is returned - no top-N cap - each with a match badge and reason chips. In a shop, "here are the eleven things that fit" beats "here are the best three" every time, because the customer is standing right there and will reject four of them on sight.
 
 ## Skin-tone matching is a matrix, not a model
 
@@ -119,7 +119,7 @@ function scoreColor(session: SessionPreferences, item: InventoryItem): number {
 }
 ```
 
-The palette is a **union**, not an intersection — colours that suit the person, plus colours that suit the event. And when skin tone is null, the score is a flat `noData` rather than a penalty, so skipping a personal question costs the customer nothing in the results. That mattered more than it sounds: an optional field that quietly degrades your recommendations isn't optional.
+The palette is a **union**, not an intersection - colours that suit the person, plus colours that suit the event. And when skin tone is null, the score is a flat `noData` rather than a penalty, so skipping a personal question costs the customer nothing in the results. That mattered more than it sounds: an optional field that quietly degrades your recommendations isn't optional.
 
 The matrices themselves are hand-written from colour theory, living in `lib/scoring/matrices.ts`:
 
@@ -160,12 +160,12 @@ emerald:    { champagne: 88, gold: 88 }
 lavender:   { grey: 82, blush: 82, champagne: 82 }
 ```
 
-Alongside it, a gallery of real couple photos as inspiration — and those looks can be tried on directly, where one generation dresses both partners from a single couple photo.
+Alongside it, a gallery of real couple photos as inspiration - and those looks can be tried on directly, where one generation dresses both partners from a single couple photo.
 
 ## What it refuses to do
 
 - **Billing records payments; it processes none.** Cash / UPI / Card / Net Banking with a mode-specific field, tax computed server-side, printable invoice. No gateway. A boutique already has a card machine.
-- **Returns are record-only** in V1 — `dress_id` plus notes, stock reconciled by hand.
+- **Returns are record-only** in V1 - `dress_id` plus notes, stock reconciled by hand.
 - **Out of scope entirely:** public storefront, rentals, appointment scheduling, customer self-service, multi-store SaaS, SMS/WhatsApp.
 
 And the invariants worth keeping in a codebase two people will touch later: `lib/scoring/` stays pure; `GROQ_API_KEY`, `OPENAI_API_KEY`, `INSFORGE_API_KEY` and `SESSION_SECRET` are server-only and never reach the client bundle; every enum string comes from `lib/constants.ts`; prices render through `formatINR()`; `dress_id` is unique and never reused, because billing and returns both key off it; passwords are bcrypt hashes; no hex values in components, tokens only.
@@ -174,8 +174,8 @@ And the invariants worth keeping in a codebase two people will touch later: `lib
 
 ## Data model
 
-All of it in InsForge Postgres: `store_settings`, `staff`, `inventory_items` (with a `details` jsonb for the rich detail page), `styling_sessions`, `recommendations`, `tryons` (`generating` → `ready` / `failed`), `bills` + `bill_items`, `returns`, and `demo_visitors` for the OTP gate. Three storage buckets: `inventory-images` public, `customer-photos` and `tryon-previews` private — the ones holding a customer's face are not the public ones.
+All of it in InsForge Postgres: `store_settings`, `staff`, `inventory_items` (with a `details` jsonb for the rich detail page), `styling_sessions`, `recommendations`, `tryons` (`generating` → `ready` / `failed`), `bills` + `bill_items`, `returns`, and `demo_visitors` for the OTP gate. Three storage buckets: `inventory-images` public, `customer-photos` and `tryon-previews` private - the ones holding a customer's face are not the public ones.
 
 ## Try it
 
-The [demo](https://laura-dress.vercel.app) is live; `/try` is the email-OTP gate that walks you in. The seeded staff logins are in the repo's README rather than here — they're credentials for a running deployment, and a blog post is a worse place to leave them lying around.
+The [demo](https://laura-dress.vercel.app) is live; `/try` is the email-OTP gate that walks you in. The seeded staff logins are in the repo's README rather than here - they're credentials for a running deployment, and a blog post is a worse place to leave them lying around.

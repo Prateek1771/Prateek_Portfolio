@@ -8,7 +8,7 @@ export function SiteFooter() {
   const socials = Object.entries(DATA.contact.social);
 
   return (
-    // Full-bleed band one step off the page, hairline on top — the inner
+    // Full-bleed band one step off the page, hairline on top - the inner
     // content still sits on the shared 640px measure.
     <footer className="mt-24 border-t border-border bg-muted/60">
       <div className="mx-auto w-full max-w-[43rem] px-6 py-12">

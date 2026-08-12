@@ -13,8 +13,7 @@ const ToggleGroup = React.forwardRef<
   <ToggleGroupPrimitive.Root
     ref={ref}
     className={cn(
-      // Scrolls horizontally by design — the reference clips its last chip.
-      "no-scrollbar flex items-center gap-2 overflow-x-auto",
+      "flex flex-wrap items-center gap-2",
       className
     )}
     {...props}
