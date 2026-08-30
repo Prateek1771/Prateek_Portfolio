@@ -77,11 +77,15 @@ export const DATA = {
     "GSAP Animations",
     "Python",
     "Flask",
+    "FastAPI",
     "MongoDB",
     "PostgreeSQL",
     "Supabase",
     "Firebase",
     "Docker",
+    "AWS",
+    "Terraform",
+    "Redis",
     "Git",
     "GitHub",
     "Postman",
@@ -238,6 +242,47 @@ export const DATA = {
   ],
 
   projects: [
+    {
+      title: "AI-Powered Docker Repo Auditor",
+      href: "https://github.com/Prateek1771/AI-Powered-Docker-Repo-Auditor",
+      dates: "",
+      active: true,
+      description:
+        "Six LLM agents read what three scanners found and grade a container image - CVEs, wasted layers, base image drift, CIS compliance. Four run concurrently under a per-agent timeout; two more consume the fan-in and see exactly which inputs can be trusted, so a failed agent degrades the report instead of quietly scoring you on less evidence. SQS FIFO worker on Fargate, live progress over Redis pub/sub, and a CI gate that blocks merges below 90% recall.",
+      technologies: [
+        "Python",
+        "FastAPI",
+        "OpenAI gpt-4o",
+        "Trivy",
+        "Docker",
+        "AWS Fargate",
+        "DynamoDB",
+        "SQS",
+        "Redis",
+        "Terraform",
+        "Next.js 16",
+        "TypeScript",
+      ],
+      links: [
+        {
+          type: "Website",
+          href: "https://prateek1771.github.io/AI-Powered-Docker-Repo-Auditor/",
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
+          type: "Source",
+          href: "https://github.com/Prateek1771/AI-Powered-Docker-Repo-Auditor",
+          icon: <Icons.github className="size-3" />,
+        },
+        {
+          type: "Blog",
+          href: "/blog/docker-auditor-audited-itself",
+          icon: <Icons.globe className="size-3" />,
+        },
+      ],
+      image: "",
+      video: "",
+    },
     {
       title: "AZ-CLAW",
       href: "https://github.com/Prateek1771/az-claw",
