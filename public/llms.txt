@@ -4,9 +4,9 @@
 
 ## Key pages
 
-- [Home](https://prateekhitli.com/): Profile, experience, skills, and featured projects.
-- [Blog](https://prateekhitli.com/blog): Write-ups on the projects and systems built.
-- [Projects](https://prateekhitli.com/projects): Shipped projects with source and live links.
-- [Work Experience](https://prateekhitli.com/work): Professional roles and responsibilities.
-- [Resume](https://prateekhitli.com/resume): Downloadable resume.
-- [Skills](https://prateekhitli.com/skills): Languages, frameworks, and tools.
+- [Home](https://prateekhitli.dev/): Profile, experience, skills, and featured projects.
+- [Blog](https://prateekhitli.dev/blog): Write-ups on the projects and systems built.
+- [Projects](https://prateekhitli.dev/projects): Shipped projects with source and live links.
+- [Work Experience](https://prateekhitli.dev/work): Professional roles and responsibilities.
+- [Resume](https://prateekhitli.dev/resume): Downloadable resume.
+- [Skills](https://prateekhitli.dev/skills): Languages, frameworks, and tools.

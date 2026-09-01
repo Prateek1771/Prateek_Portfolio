@@ -7,7 +7,7 @@ const EMAIL = "hitliprateek6@gmail.com";
 export const DATA = {
   name: "Prateek Hitli",
   initials: "PH",
-  url: "https://prateekhitli.com",
+  url: "https://prateekhitli.dev",
   location: "Karnataka, India",
   locationLink: "https://www.google.com/maps/place/Karnataka,+India",
   description:

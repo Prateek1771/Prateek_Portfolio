@@ -24,4 +24,5 @@ export const FOOTER_NAV = [
   { href: "/movies", label: "Movies" },
   { href: "/skills", label: "Skills" },
   { href: "/hackathons", label: "Hackathons" },
+  { href: "/sitemap.xml", label: "Sitemap" },
 ];
