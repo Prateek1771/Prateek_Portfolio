@@ -13,6 +13,7 @@ const ROUTES = [
   "/setup",
   "/books",
   "/movies",
+  "/collections",
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
