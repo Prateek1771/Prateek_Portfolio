@@ -2,6 +2,7 @@ import { ExternalLinkIcon } from "lucide-react";
 
 import { Quote } from "@/components/quote";
 import { SectionHeading } from "@/components/rows";
+import { Track } from "@/components/track";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { buildMetadata } from "@/lib/seo";
@@ -26,17 +27,19 @@ export default function ResumePage() {
       <Separator />
 
       <div className="relative overflow-hidden rounded-lg border border-border bg-card">
-        <Button
-          asChild
-          variant="outline"
-          size="icon"
-          className="absolute right-3 top-3 z-10"
-          aria-label="Open resume in a new tab"
-        >
-          <a href={RESUME} target="_blank" rel="noopener noreferrer">
-            <ExternalLinkIcon className="size-4" strokeWidth={1.5} />
-          </a>
-        </Button>
+        <Track event="resume_download">
+          <Button
+            asChild
+            variant="outline"
+            size="icon"
+            className="absolute right-3 top-3 z-10"
+            aria-label="Open resume in a new tab"
+          >
+            <a href={RESUME} target="_blank" rel="noopener noreferrer">
+              <ExternalLinkIcon className="size-4" strokeWidth={1.5} />
+            </a>
+          </Button>
+        </Track>
         {/*
           Chrome's built-in PDF viewer. Fixed aspect rather than a viewport
           height so it can't push the page into horizontal scroll at 390px.

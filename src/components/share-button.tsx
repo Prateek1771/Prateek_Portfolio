@@ -1,5 +1,6 @@
 "use client";
 
+import posthog from "posthog-js";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -17,12 +18,14 @@ export function ShareButton({ title }: { title: string }) {
     if (navigator.share) {
       try {
         await navigator.share({ title, url });
+        posthog.capture("share_post", { url, method: "native" });
         return;
       } catch {
         // The user dismissed the sheet - fall through to copying.
       }
     }
     await navigator.clipboard?.writeText(url);
+    posthog.capture("share_post", { url, method: "clipboard" });
     setCopied(true);
     setTimeout(() => setCopied(false), 1500);
   }

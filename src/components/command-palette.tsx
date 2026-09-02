@@ -2,6 +2,7 @@
 
 import { SearchIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
+import posthog from "posthog-js";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { Badge } from "@/components/ui/badge";
@@ -75,6 +76,7 @@ export function CommandPalette({ posts }: { posts: PalettePost[] }) {
   }, [active]);
 
   function go(href: string) {
+    posthog.capture("command_palette_navigate", { href, query });
     setOpen(false);
     setQuery("");
     setActive(0);

@@ -1,6 +1,7 @@
 "use client";
 
 import { CheckIcon, CopyIcon } from "lucide-react";
+import posthog from "posthog-js";
 import { useState } from "react";
 
 /**
@@ -16,6 +17,7 @@ export function CopyEmail({ email }: { email: string }) {
       aria-label={copied ? "Email address copied" : "Copy email address"}
       onClick={() => {
         navigator.clipboard?.writeText(email);
+        posthog.capture("copy_email");
         setCopied(true);
         setTimeout(() => setCopied(false), 1500);
       }}
